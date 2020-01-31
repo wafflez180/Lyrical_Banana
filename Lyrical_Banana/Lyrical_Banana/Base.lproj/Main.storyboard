@@ -21,64 +21,81 @@
                                 <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t created a video yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-7P-jpE">
-                                <rect key="frame" x="84.5" y="294" width="245" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="krB-fy-67L">
-                                <rect key="frame" x="189.5" y="224" width="35" height="40"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-3Q-vtT" customClass="PMSuperButton" customModule="PMSuperButton">
-                                <rect key="frame" x="92" y="732" width="230" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qa5-Kh-tTw" userLabel="VideoListContainerView">
+                                <rect key="frame" x="0.0" y="102" width="414" height="760"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t created a video yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-7P-jpE">
+                                        <rect key="frame" x="84.5" y="160" width="245" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-3Q-vtT" customClass="PMSuperButton" customModule="PMSuperButton">
+                                        <rect key="frame" x="92" y="630" width="230" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="9dj-0L-ehm"/>
+                                            <constraint firstAttribute="width" constant="230" id="eeY-Nb-UM5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Create New Video"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ripple" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
+                                                <color key="value" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="0.30140433280000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rippleSpeed">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="pressedCreateNewVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bL-Bd-uQE"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="krB-fy-67L">
+                                        <rect key="frame" x="189.5" y="90" width="35" height="40"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9dj-0L-ehm"/>
-                                    <constraint firstAttribute="width" constant="230" id="eeY-Nb-UM5"/>
+                                    <constraint firstItem="xRc-3Q-vtT" firstAttribute="centerX" secondItem="Qa5-Kh-tTw" secondAttribute="centerX" id="1Jb-A6-jby"/>
+                                    <constraint firstItem="RFy-7P-jpE" firstAttribute="top" secondItem="krB-fy-67L" secondAttribute="bottom" constant="30" id="3SZ-Rf-sVN"/>
+                                    <constraint firstAttribute="bottom" secondItem="xRc-3Q-vtT" secondAttribute="bottom" constant="80" id="8S8-6J-eg8"/>
+                                    <constraint firstItem="krB-fy-67L" firstAttribute="top" secondItem="Qa5-Kh-tTw" secondAttribute="top" constant="90" id="j2T-bg-RKe"/>
+                                    <constraint firstItem="RFy-7P-jpE" firstAttribute="centerX" secondItem="Qa5-Kh-tTw" secondAttribute="centerX" id="kLy-ki-Iof"/>
+                                    <constraint firstItem="krB-fy-67L" firstAttribute="centerX" secondItem="Qa5-Kh-tTw" secondAttribute="centerX" id="yg0-iS-aWW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Create New Video"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ripple" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
-                                        <color key="value" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="0.3014043328220859" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rippleSpeed">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RFy-7P-jpE" firstAttribute="top" secondItem="krB-fy-67L" secondAttribute="bottom" constant="30" id="2xe-gc-eP2"/>
-                            <constraint firstItem="krB-fy-67L" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="81t-ML-OKu"/>
-                            <constraint firstItem="RFy-7P-jpE" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="Fqs-7n-8qR"/>
-                            <constraint firstItem="xRc-3Q-vtT" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="KB1-Ai-EHK"/>
+                            <constraint firstItem="DOr-is-vXV" firstAttribute="bottom" secondItem="Qa5-Kh-tTw" secondAttribute="bottom" id="L6L-mg-n96"/>
                             <constraint firstItem="3Eg-hb-pUV" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="McS-fr-F5n"/>
-                            <constraint firstItem="krB-fy-67L" firstAttribute="top" secondItem="3Eg-hb-pUV" secondAttribute="bottom" constant="130" id="rc1-md-tdq"/>
+                            <constraint firstItem="Qa5-Kh-tTw" firstAttribute="leading" secondItem="DOr-is-vXV" secondAttribute="leading" id="fM2-iD-ddE"/>
+                            <constraint firstItem="DOr-is-vXV" firstAttribute="trailing" secondItem="Qa5-Kh-tTw" secondAttribute="trailing" id="lnf-0I-pee"/>
                             <constraint firstItem="3Eg-hb-pUV" firstAttribute="top" secondItem="DOr-is-vXV" secondAttribute="top" constant="20" id="rvY-D3-P1q"/>
-                            <constraint firstItem="DOr-is-vXV" firstAttribute="bottom" secondItem="xRc-3Q-vtT" secondAttribute="bottom" constant="80" id="y7n-GS-vf2"/>
+                            <constraint firstItem="Qa5-Kh-tTw" firstAttribute="top" secondItem="3Eg-hb-pUV" secondAttribute="bottom" constant="8" symbolic="YES" id="vwl-Lq-zv7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DOr-is-vXV"/>
                     </view>
                     <connections>
                         <outlet property="bananaImageView" destination="krB-fy-67L" id="rf7-6O-3Xi"/>
+                        <outlet property="createNewVideoButton" destination="xRc-3Q-vtT" id="1Az-2f-RQW"/>
                         <outlet property="noVideosCreatedLabel" destination="RFy-7P-jpE" id="MLf-Fc-Gvz"/>
+                        <outlet property="videoListContainerView" destination="Qa5-Kh-tTw" id="Grw-Qt-9rG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="139"/>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
     <resources>
