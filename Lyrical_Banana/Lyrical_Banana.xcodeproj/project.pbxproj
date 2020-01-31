@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
 		CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */; };
-		CA8BF75323E4E08500DAB094 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75223E4E08500DAB094 /* ViewController.swift */; };
+		CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75223E4E08500DAB094 /* MainViewController.swift */; };
 		CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75423E4E08500DAB094 /* Main.storyboard */; };
 		CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75723E4E08800DAB094 /* Assets.xcassets */; };
 		CA8BF75B23E4E08800DAB094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyrical_Banana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CA8BF75223E4E08500DAB094 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CA8BF75223E4E08500DAB094 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CA8BF75523E4E08500DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA8BF75723E4E08800DAB094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA8BF75A23E4E08800DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */,
 				CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */,
 				CA8BF75423E4E08500DAB094 /* Main.storyboard */,
-				CA8BF75223E4E08500DAB094 /* ViewController.swift */,
+				CA8BF75223E4E08500DAB094 /* MainViewController.swift */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
 				CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */,
 				CA49ADB623E4E3DC00F31630 /* Fonts */,
@@ -112,6 +112,7 @@
 				CA8BF74723E4E08500DAB094 /* Sources */,
 				CA8BF74823E4E08500DAB094 /* Frameworks */,
 				CA8BF74923E4E08500DAB094 /* Resources */,
+				91AEBF1BBC392F11E0BAA7C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +170,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		91AEBF1BBC392F11E0BAA7C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D558EAE18CADA1C32AEABE93 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,7 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8BF75323E4E08500DAB094 /* ViewController.swift in Sources */,
+				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
 				CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */,
 				CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */,
 			);

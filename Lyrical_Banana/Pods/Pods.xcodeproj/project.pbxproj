@@ -7,67 +7,132 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		066616E991E4DB1E2ECD266F1364B122 /* Pods-Lyrical_Banana-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E32CE4145C80725219E72934800A67B /* Pods-Lyrical_Banana-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3379E80F9714804D5B3BDBE48ED81471 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		93D76E05910A96C0328535286A3B1BC4 /* Pods-Lyrical_Banana-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3BD5014A7B141426A84D7130FA867 /* Pods-Lyrical_Banana-dummy.m */; };
+		16435C4547FFEB492E9E3D2C8A4EF613 /* Pods-Lyrical_Banana-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F30CC721850C7116BA9695B7CE053 /* Pods-Lyrical_Banana-dummy.m */; };
+		8ABFC1E7614290B8F371A2060B76B84F /* Pods-Lyrical_Banana-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3F89FBDB5337E9F1A919192725D2A2C /* Pods-Lyrical_Banana-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5C0E1503FB32CFDE899282C3186ED7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		B6B94F1E4E7D50667170DF8635E5B4E9 /* PMSuperButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0649FF6B5A7B1EFA445636252B9F2F /* PMSuperButton-dummy.m */; };
+		C4DF43AB7FA7B9F7C2F0A43502F38D77 /* PMSuperButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D9F9E5AFB06EC06AF3234B5F2A2D4E2B /* PMSuperButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE730D93B40031B8B457A652AEE2B84E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		EA236B3FA319F36114169936F3CCC5AF /* PMSuperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423C1B69E35CAFEA15361B6726551907 /* PMSuperButton.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F88CCD2A2BABA9DC26B13398D466F93B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 224E2137470271414147FB865B1307B8;
+			remoteInfo = PMSuperButton;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		0E32CE4145C80725219E72934800A67B /* Pods-Lyrical_Banana-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Lyrical_Banana-umbrella.h"; sourceTree = "<group>"; };
+		033221AB4EC085A81ADB8E02B37BBC20 /* PMSuperButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PMSuperButton.modulemap; sourceTree = "<group>"; };
+		0FE1CB58546C02CB9C67418002EF1D1D /* Pods-Lyrical_Banana-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Lyrical_Banana-frameworks.sh"; sourceTree = "<group>"; };
+		149F30CC721850C7116BA9695B7CE053 /* Pods-Lyrical_Banana-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Lyrical_Banana-dummy.m"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		33156CA1C3D71F938E52CA6916A55CC6 /* Pods_Lyrical_Banana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Lyrical_Banana.framework; path = "Pods-Lyrical_Banana.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FD3BD5014A7B141426A84D7130FA867 /* Pods-Lyrical_Banana-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Lyrical_Banana-dummy.m"; sourceTree = "<group>"; };
-		43379E21684E2D44CB46D0A6527802D1 /* Pods-Lyrical_Banana-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lyrical_Banana-acknowledgements.plist"; sourceTree = "<group>"; };
-		995085DC5F1D803CBB02CF97491C75F4 /* Pods-Lyrical_Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lyrical_Banana.release.xcconfig"; sourceTree = "<group>"; };
+		35BBDC4539B1C063900D94DFB9F79660 /* Pods-Lyrical_Banana-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lyrical_Banana-acknowledgements.plist"; sourceTree = "<group>"; };
+		3FDBDA5CA87D58539D3B231BCB4D6B67 /* Pods-Lyrical_Banana.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Lyrical_Banana.modulemap"; sourceTree = "<group>"; };
+		423C1B69E35CAFEA15361B6726551907 /* PMSuperButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PMSuperButton.swift; path = Sources/PMSuperButton.swift; sourceTree = "<group>"; };
+		651770B342AA363FEEB6AB2729CBDC17 /* Pods-Lyrical_Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lyrical_Banana.release.xcconfig"; sourceTree = "<group>"; };
+		6A53249658F1BAA522CEEF11C673724F /* PMSuperButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PMSuperButton.xcconfig; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A9F27A100B7B35C4228EF9DD8C4387B2 /* Pods-Lyrical_Banana.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Lyrical_Banana.modulemap"; sourceTree = "<group>"; };
-		AC7656107E3F40850481E30B2A93A117 /* Pods-Lyrical_Banana-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Lyrical_Banana-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D2051AA90CFF317CF256E949D6516F8E /* Pods-Lyrical_Banana-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lyrical_Banana-Info.plist"; sourceTree = "<group>"; };
-		FD3A88076E1B6560C6D373AD8636193D /* Pods-Lyrical_Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lyrical_Banana.debug.xcconfig"; sourceTree = "<group>"; };
+		A3C6B0E3D63CBF9670B6ED9C4EA334E3 /* Pods-Lyrical_Banana-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lyrical_Banana-Info.plist"; sourceTree = "<group>"; };
+		A3F89FBDB5337E9F1A919192725D2A2C /* Pods-Lyrical_Banana-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Lyrical_Banana-umbrella.h"; sourceTree = "<group>"; };
+		A7520DC2A19D688C28F59ACA93EEB1CC /* Pods-Lyrical_Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lyrical_Banana.debug.xcconfig"; sourceTree = "<group>"; };
+		C65A64A2171714D35F163800EE09FC0C /* PMSuperButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PMSuperButton-prefix.pch"; sourceTree = "<group>"; };
+		C68C9B93DF5B4A982CB2140092DEE812 /* PMSuperButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PMSuperButton.framework; path = PMSuperButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22D24D91A5514BF42C0BA67032124C1 /* Pods-Lyrical_Banana-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Lyrical_Banana-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D9F9E5AFB06EC06AF3234B5F2A2D4E2B /* PMSuperButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PMSuperButton-umbrella.h"; sourceTree = "<group>"; };
+		DF26B74CC985EF158DA79F86A91F6DDB /* PMSuperButton-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PMSuperButton-Info.plist"; sourceTree = "<group>"; };
+		ED0649FF6B5A7B1EFA445636252B9F2F /* PMSuperButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PMSuperButton-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		60A883E2007047F19422BFDA0B6A09D6 /* Frameworks */ = {
+		68CE28EBDBB12AB839A89A952C38DDE4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3379E80F9714804D5B3BDBE48ED81471 /* Foundation.framework in Frameworks */,
+				DE730D93B40031B8B457A652AEE2B84E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3ECA88EE3B1CACE6572856CB7897437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5C0E1503FB32CFDE899282C3186ED7A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A8492DE0B06F07DF0ACB93D6748C081 /* Products */ = {
+		054427636DD339ACB4E120E75EC411D1 /* Pods-Lyrical_Banana */ = {
 			isa = PBXGroup;
 			children = (
+				3FDBDA5CA87D58539D3B231BCB4D6B67 /* Pods-Lyrical_Banana.modulemap */,
+				D22D24D91A5514BF42C0BA67032124C1 /* Pods-Lyrical_Banana-acknowledgements.markdown */,
+				35BBDC4539B1C063900D94DFB9F79660 /* Pods-Lyrical_Banana-acknowledgements.plist */,
+				149F30CC721850C7116BA9695B7CE053 /* Pods-Lyrical_Banana-dummy.m */,
+				0FE1CB58546C02CB9C67418002EF1D1D /* Pods-Lyrical_Banana-frameworks.sh */,
+				A3C6B0E3D63CBF9670B6ED9C4EA334E3 /* Pods-Lyrical_Banana-Info.plist */,
+				A3F89FBDB5337E9F1A919192725D2A2C /* Pods-Lyrical_Banana-umbrella.h */,
+				A7520DC2A19D688C28F59ACA93EEB1CC /* Pods-Lyrical_Banana.debug.xcconfig */,
+				651770B342AA363FEEB6AB2729CBDC17 /* Pods-Lyrical_Banana.release.xcconfig */,
+			);
+			name = "Pods-Lyrical_Banana";
+			path = "Target Support Files/Pods-Lyrical_Banana";
+			sourceTree = "<group>";
+		};
+		2B95C1B67211D01C8F2F2588C20907C8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8CD5F020847C19E35999DEBDDBAF1C7F /* PMSuperButton */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3FCFF5C955234AD96AA554D4624A6EEE /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				054427636DD339ACB4E120E75EC411D1 /* Pods-Lyrical_Banana */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		4E1F47FA689C6132F4E48AD6C714F6CB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				033221AB4EC085A81ADB8E02B37BBC20 /* PMSuperButton.modulemap */,
+				6A53249658F1BAA522CEEF11C673724F /* PMSuperButton.xcconfig */,
+				ED0649FF6B5A7B1EFA445636252B9F2F /* PMSuperButton-dummy.m */,
+				DF26B74CC985EF158DA79F86A91F6DDB /* PMSuperButton-Info.plist */,
+				C65A64A2171714D35F163800EE09FC0C /* PMSuperButton-prefix.pch */,
+				D9F9E5AFB06EC06AF3234B5F2A2D4E2B /* PMSuperButton-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PMSuperButton";
+			sourceTree = "<group>";
+		};
+		685EB4821BCB7F6C793FD895EB41B2E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C68C9B93DF5B4A982CB2140092DEE812 /* PMSuperButton.framework */,
 				33156CA1C3D71F938E52CA6916A55CC6 /* Pods_Lyrical_Banana.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4AC392A5726AD2A006CFB82E73A16615 /* Targets Support Files */ = {
+		8CD5F020847C19E35999DEBDDBAF1C7F /* PMSuperButton */ = {
 			isa = PBXGroup;
 			children = (
-				6C08362227A9BE43F9D11A281033E98C /* Pods-Lyrical_Banana */,
+				423C1B69E35CAFEA15361B6726551907 /* PMSuperButton.swift */,
+				4E1F47FA689C6132F4E48AD6C714F6CB /* Support Files */,
 			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		6C08362227A9BE43F9D11A281033E98C /* Pods-Lyrical_Banana */ = {
-			isa = PBXGroup;
-			children = (
-				A9F27A100B7B35C4228EF9DD8C4387B2 /* Pods-Lyrical_Banana.modulemap */,
-				AC7656107E3F40850481E30B2A93A117 /* Pods-Lyrical_Banana-acknowledgements.markdown */,
-				43379E21684E2D44CB46D0A6527802D1 /* Pods-Lyrical_Banana-acknowledgements.plist */,
-				3FD3BD5014A7B141426A84D7130FA867 /* Pods-Lyrical_Banana-dummy.m */,
-				D2051AA90CFF317CF256E949D6516F8E /* Pods-Lyrical_Banana-Info.plist */,
-				0E32CE4145C80725219E72934800A67B /* Pods-Lyrical_Banana-umbrella.h */,
-				FD3A88076E1B6560C6D373AD8636193D /* Pods-Lyrical_Banana.debug.xcconfig */,
-				995085DC5F1D803CBB02CF97491C75F4 /* Pods-Lyrical_Banana.release.xcconfig */,
-			);
-			name = "Pods-Lyrical_Banana";
-			path = "Target Support Files/Pods-Lyrical_Banana";
+			name = PMSuperButton;
+			path = PMSuperButton;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -83,8 +148,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				3A8492DE0B06F07DF0ACB93D6748C081 /* Products */,
-				4AC392A5726AD2A006CFB82E73A16615 /* Targets Support Files */,
+				2B95C1B67211D01C8F2F2588C20907C8 /* Pods */,
+				685EB4821BCB7F6C793FD895EB41B2E7 /* Products */,
+				3FCFF5C955234AD96AA554D4624A6EEE /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,29 +165,56 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		ABBBB367A1DED948B624E7BFB7CA8193 /* Headers */ = {
+		80AEC497C3B6F56EF522C826064B8C92 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				066616E991E4DB1E2ECD266F1364B122 /* Pods-Lyrical_Banana-umbrella.h in Headers */,
+				C4DF43AB7FA7B9F7C2F0A43502F38D77 /* PMSuperButton-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEC830B77D03E7D9221F485570347077 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ABFC1E7614290B8F371A2060B76B84F /* Pods-Lyrical_Banana-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2CC7CEDFFC915015E556428DA55B53AF /* Pods-Lyrical_Banana */ = {
+		224E2137470271414147FB865B1307B8 /* PMSuperButton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADF1B40F626C0992F5DE5A33D931807A /* Build configuration list for PBXNativeTarget "Pods-Lyrical_Banana" */;
+			buildConfigurationList = B15D91E8954CE168824526ACBFBFEBF5 /* Build configuration list for PBXNativeTarget "PMSuperButton" */;
 			buildPhases = (
-				ABBBB367A1DED948B624E7BFB7CA8193 /* Headers */,
-				2D9A388FCA787EF0718804F99C7CCB93 /* Sources */,
-				60A883E2007047F19422BFDA0B6A09D6 /* Frameworks */,
-				0969806C6924A175B1F579A4BF6E0769 /* Resources */,
+				80AEC497C3B6F56EF522C826064B8C92 /* Headers */,
+				03CD02E926C284D813CC0AD0908286CC /* Sources */,
+				68CE28EBDBB12AB839A89A952C38DDE4 /* Frameworks */,
+				77197BF6B434B3675FAA6569E5B23A39 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			name = PMSuperButton;
+			productName = PMSuperButton;
+			productReference = C68C9B93DF5B4A982CB2140092DEE812 /* PMSuperButton.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2CC7CEDFFC915015E556428DA55B53AF /* Pods-Lyrical_Banana */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2885D15AECF7E91CCF352762983C6207 /* Build configuration list for PBXNativeTarget "Pods-Lyrical_Banana" */;
+			buildPhases = (
+				BEC830B77D03E7D9221F485570347077 /* Headers */,
+				D9199D46CB461453ED51C67E7AC0B429 /* Sources */,
+				F3ECA88EE3B1CACE6572856CB7897437 /* Frameworks */,
+				A879BFDC79AE05E3338CE1B58149BA07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				056A5562BDFA8870C27DB9A56A7C19FC /* PBXTargetDependency */,
 			);
 			name = "Pods-Lyrical_Banana";
 			productName = "Pods-Lyrical_Banana";
@@ -146,17 +239,25 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 3A8492DE0B06F07DF0ACB93D6748C081 /* Products */;
+			productRefGroup = 685EB4821BCB7F6C793FD895EB41B2E7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				224E2137470271414147FB865B1307B8 /* PMSuperButton */,
 				2CC7CEDFFC915015E556428DA55B53AF /* Pods-Lyrical_Banana */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0969806C6924A175B1F579A4BF6E0769 /* Resources */ = {
+		77197BF6B434B3675FAA6569E5B23A39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A879BFDC79AE05E3338CE1B58149BA07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,20 +267,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2D9A388FCA787EF0718804F99C7CCB93 /* Sources */ = {
+		03CD02E926C284D813CC0AD0908286CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D76E05910A96C0328535286A3B1BC4 /* Pods-Lyrical_Banana-dummy.m in Sources */,
+				B6B94F1E4E7D50667170DF8635E5B4E9 /* PMSuperButton-dummy.m in Sources */,
+				EA236B3FA319F36114169936F3CCC5AF /* PMSuperButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9199D46CB461453ED51C67E7AC0B429 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16435C4547FFEB492E9E3D2C8A4EF613 /* Pods-Lyrical_Banana-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		056A5562BDFA8870C27DB9A56A7C19FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PMSuperButton;
+			target = 224E2137470271414147FB865B1307B8 /* PMSuperButton */;
+			targetProxy = F88CCD2A2BABA9DC26B13398D466F93B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		4A864EF252FE29B9E8F3F82FB61889D0 /* Release */ = {
+		27CFE8E46E080F8E0D45FDA634ED3A19 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 995085DC5F1D803CBB02CF97491C75F4 /* Pods-Lyrical_Banana.release.xcconfig */;
+			baseConfigurationReference = A7520DC2A19D688C28F59ACA93EEB1CC /* Pods-Lyrical_Banana.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -209,6 +328,80 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		38AFFFD606419D10DB900F4E0829B42F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 651770B342AA363FEEB6AB2729CBDC17 /* Pods-Lyrical_Banana.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		65AB140D830CDF4E8F4FC93ED123D69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A53249658F1BAA522CEEF11C673724F /* PMSuperButton.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PMSuperButton/PMSuperButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PMSuperButton/PMSuperButton-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PMSuperButton/PMSuperButton.modulemap";
+				PRODUCT_MODULE_NAME = PMSuperButton;
+				PRODUCT_NAME = PMSuperButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -280,12 +473,10 @@
 			};
 			name = Debug;
 		};
-		D695195AD9D67CDAF4B0C6E87DB46800 /* Debug */ = {
+		CAD3E0EF9315C8032B3DE74F46FA2BC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD3A88076E1B6560C6D373AD8636193D /* Pods-Lyrical_Banana.debug.xcconfig */;
+			baseConfigurationReference = 6A53249658F1BAA522CEEF11C673724F /* PMSuperButton.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -295,23 +486,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/PMSuperButton/PMSuperButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PMSuperButton/PMSuperButton-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/PMSuperButton/PMSuperButton.modulemap";
+				PRODUCT_MODULE_NAME = PMSuperButton;
+				PRODUCT_NAME = PMSuperButton;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -381,6 +571,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2885D15AECF7E91CCF352762983C6207 /* Build configuration list for PBXNativeTarget "Pods-Lyrical_Banana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27CFE8E46E080F8E0D45FDA634ED3A19 /* Debug */,
+				38AFFFD606419D10DB900F4E0829B42F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -390,11 +589,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADF1B40F626C0992F5DE5A33D931807A /* Build configuration list for PBXNativeTarget "Pods-Lyrical_Banana" */ = {
+		B15D91E8954CE168824526ACBFBFEBF5 /* Build configuration list for PBXNativeTarget "PMSuperButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D695195AD9D67CDAF4B0C6E87DB46800 /* Debug */,
-				4A864EF252FE29B9E8F3F82FB61889D0 /* Release */,
+				CAD3E0EF9315C8032B3DE74F46FA2BC0 /* Debug */,
+				65AB140D830CDF4E8F4FC93ED123D69D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
