@@ -19,6 +19,7 @@
 /* Begin PBXFileReference section */
 		7109CAD9D045A2F8AE51DE2A /* Pods-Lyrical_Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.debug.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.debug.xcconfig"; sourceTree = "<group>"; };
 		8EC63F33DE18E55E53BEC5D5 /* Pods-Lyrical_Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.release.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.release.xcconfig"; sourceTree = "<group>"; };
+		CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sinhala_MN.ttc; sourceTree = "<group>"; };
 		CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyrical_Banana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 				7109CAD9D045A2F8AE51DE2A /* Pods-Lyrical_Banana.debug.xcconfig */,
 				8EC63F33DE18E55E53BEC5D5 /* Pods-Lyrical_Banana.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -58,6 +58,14 @@
 				D91BE12866911C6DDB4FD2C0 /* Pods_Lyrical_Banana.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA49ADB623E4E3DC00F31630 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CA8BF74223E4E08500DAB094 = {
@@ -87,6 +95,7 @@
 				CA8BF75223E4E08500DAB094 /* ViewController.swift */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
 				CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */,
+				CA49ADB623E4E3DC00F31630 /* Fonts */,
 				CA8BF75C23E4E08800DAB094 /* Info.plist */,
 			);
 			path = Lyrical_Banana;
