@@ -11,6 +11,10 @@ import PMSuperButton
 
 class MainViewController: UIViewController {
     
+    let spotifyRemote = (UIApplication.shared.delegate as! AppDelegate).appRemote
+    var playURI = "spotify:track:3yk7PJnryiJ8mAPqsrujzf"
+
+    @IBOutlet var editorContainerView: UIView!
     @IBOutlet var videoListContainerView: UIView!
     
     @IBOutlet var bananaImageView: UIImageView!
@@ -22,6 +26,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.editorContainerView.alpha = 0.0
     }
     
     // MARK: - MainViewController
@@ -39,6 +44,20 @@ class MainViewController: UIViewController {
         }) { completed in
             self.videoListContainerView.isHidden = true
         }
+        UIView.animate(withDuration: 0.2, delay: 0.4, animations: {
+            self.editorContainerView.alpha = 1.0
+        })
+    
+        spotifyRemote.authorizeAndPlayURI(self.playURI)
+        
+        //spotifyRemote.playerAPI?.play(<#T##trackUri: String##String#>, asRadio: <#T##Bool#>, callback: <#T##SPTAppRemoteCallback##SPTAppRemoteCallback##(Any?, Error?) -> Void#>)
+        //spotifyRemote.playerAPI?.pause(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
+        //spotifyRemote.playerAPI?.resume(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
+        //spotifyRemote.playerAPI?.seekForward15Seconds(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
+        //spotifyRemote.playerAPI?.seekBackward15Seconds(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
+        //spotifyRemote.playerAPI?.seek(toPosition: <#T##Int#>, callback: <#T##SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
     }
+    
 }
+
 

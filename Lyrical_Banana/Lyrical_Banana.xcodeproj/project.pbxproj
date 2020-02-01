@@ -3,23 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
+		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
 		CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */; };
 		CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75223E4E08500DAB094 /* MainViewController.swift */; };
 		CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75423E4E08500DAB094 /* Main.storyboard */; };
 		CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75723E4E08800DAB094 /* Assets.xcassets */; };
 		CA8BF75B23E4E08800DAB094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */; };
-		E21662110AE77C5623CCF64B /* Pods_Lyrical_Banana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91BE12866911C6DDB4FD2C0 /* Pods_Lyrical_Banana.framework */; };
+		D9FBEDAB02D0F6F83BE71E65 /* Pods_Lyrical_Banana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrical_Banana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7109CAD9D045A2F8AE51DE2A /* Pods-Lyrical_Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.debug.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.debug.xcconfig"; sourceTree = "<group>"; };
 		8EC63F33DE18E55E53BEC5D5 /* Pods-Lyrical_Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.release.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.release.xcconfig"; sourceTree = "<group>"; };
 		CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sinhala_MN.ttc; sourceTree = "<group>"; };
+		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lyrical_Banana-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyrical_Banana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +34,6 @@
 		CA8BF75723E4E08800DAB094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA8BF75A23E4E08800DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA8BF75C23E4E08800DAB094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D91BE12866911C6DDB4FD2C0 /* Pods_Lyrical_Banana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrical_Banana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E21662110AE77C5623CCF64B /* Pods_Lyrical_Banana.framework in Frameworks */,
+				CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */,
+				D9FBEDAB02D0F6F83BE71E65 /* Pods_Lyrical_Banana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +61,8 @@
 		86AE3BBA6AAFF9A84EF5A258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D91BE12866911C6DDB4FD2C0 /* Pods_Lyrical_Banana.framework */,
+				CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */,
+				53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,10 +100,12 @@
 				CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */,
 				CA8BF75423E4E08500DAB094 /* Main.storyboard */,
 				CA8BF75223E4E08500DAB094 /* MainViewController.swift */,
+				CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
 				CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */,
 				CA49ADB623E4E3DC00F31630 /* Fonts */,
 				CA8BF75C23E4E08800DAB094 /* Info.plist */,
+				CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */,
 			);
 			path = Lyrical_Banana;
 			sourceTree = "<group>";
@@ -112,7 +121,7 @@
 				CA8BF74723E4E08500DAB094 /* Sources */,
 				CA8BF74823E4E08500DAB094 /* Frameworks */,
 				CA8BF74923E4E08500DAB094 /* Resources */,
-				91AEBF1BBC392F11E0BAA7C7 /* [CP] Embed Pods Frameworks */,
+				29192BB8A2B5538B3011D94E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,7 +179,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		91AEBF1BBC392F11E0BAA7C7 /* [CP] Embed Pods Frameworks */ = {
+		29192BB8A2B5538B3011D94E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -219,6 +228,7 @@
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
 				CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */,
 				CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */,
+				CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,13 +375,28 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72H7NZKH7W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Lyrical_Banana/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"PMSuperButton\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthur.Lyrical-Banana";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lyrical_Banana/Lyrical_Banana-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -384,13 +409,29 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72H7NZKH7W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(SRCROOT)",
+				);
 				INFOPLIST_FILE = Lyrical_Banana/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"PMSuperButton\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthur.Lyrical-Banana";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lyrical_Banana/Lyrical_Banana-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
