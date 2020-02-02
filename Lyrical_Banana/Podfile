@@ -6,6 +6,7 @@ target 'Lyrical_Banana' do
   use_frameworks!
 
   pod 'PMSuperButton'
+  pod 'Alamofire', '~> 5.0.0-rc.3'
 
   # Pods for Lyrical_Banana
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0BB0A523E760300093F5CE /* MusicServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0A423E760300093F5CE /* MusicServiceViewController.swift */; };
+		CA0BB0A723E76F780093F5CE /* SelectSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0A623E76F780093F5CE /* SelectSongViewController.swift */; };
+		CA0BB0A923E7706E0093F5CE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0A823E7706E0093F5CE /* UIView+Extension.swift */; };
+		CA0BB0AF23E77AA10093F5CE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */; };
+		CA0BB0B023E77AA10093F5CE /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */; };
 		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
 		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
@@ -22,6 +27,11 @@
 		53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lyrical_Banana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7109CAD9D045A2F8AE51DE2A /* Pods-Lyrical_Banana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.debug.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.debug.xcconfig"; sourceTree = "<group>"; };
 		8EC63F33DE18E55E53BEC5D5 /* Pods-Lyrical_Banana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lyrical_Banana.release.xcconfig"; path = "Target Support Files/Pods-Lyrical_Banana/Pods-Lyrical_Banana.release.xcconfig"; sourceTree = "<group>"; };
+		CA0BB0A423E760300093F5CE /* MusicServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicServiceViewController.swift; sourceTree = "<group>"; };
+		CA0BB0A623E76F780093F5CE /* SelectSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSongViewController.swift; sourceTree = "<group>"; };
+		CA0BB0A823E7706E0093F5CE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongTableViewCell.swift; path = ../../../../Downloads/SongTableViewCell.swift; sourceTree = "<group>"; };
+		CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SongTableViewCell.xib; path = ../../../../Downloads/SongTableViewCell.xib; sourceTree = "<group>"; };
 		CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sinhala_MN.ttc; sourceTree = "<group>"; };
 		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
@@ -67,6 +77,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA0BB0AA23E770740093F5CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA0BB0A823E7706E0093F5CE /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CA49ADB623E4E3DC00F31630 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +119,13 @@
 				CA8BF75423E4E08500DAB094 /* Main.storyboard */,
 				CA8BF75223E4E08500DAB094 /* MainViewController.swift */,
 				CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */,
+				CA0BB0A423E760300093F5CE /* MusicServiceViewController.swift */,
+				CA0BB0A623E76F780093F5CE /* SelectSongViewController.swift */,
+				CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */,
+				CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
 				CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */,
+				CA0BB0AA23E770740093F5CE /* Extensions */,
 				CA49ADB623E4E3DC00F31630 /* Fonts */,
 				CA8BF75C23E4E08800DAB094 /* Info.plist */,
 				CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */,
@@ -170,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA0BB0B023E77AA10093F5CE /* SongTableViewCell.xib in Resources */,
 				CA8BF75B23E4E08800DAB094 /* LaunchScreen.storyboard in Resources */,
 				CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */,
 				CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */,
@@ -226,6 +250,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
+				CA0BB0A923E7706E0093F5CE /* UIView+Extension.swift in Sources */,
+				CA0BB0A723E76F780093F5CE /* SelectSongViewController.swift in Sources */,
+				CA0BB0A523E760300093F5CE /* MusicServiceViewController.swift in Sources */,
+				CA0BB0AF23E77AA10093F5CE /* SongTableViewCell.swift in Sources */,
 				CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */,
 				CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */,
 				CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */,

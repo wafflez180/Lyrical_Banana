@@ -1,16 +1,20 @@
 PODS:
+  - Alamofire (5.0.0-rc.3)
   - PMSuperButton (3.0.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
   - PMSuperButton
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - PMSuperButton
 
 SPEC CHECKSUMS:
+  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   PMSuperButton: 72105fef415890c8792a9e5a784f75c461066f8b
 
-PODFILE CHECKSUM: 749508d705b018902c8d337fb01ed08e28aabcbd
+PODFILE CHECKSUM: 26d93d254e893d2852a1961ba579c13c905f51ea
 
 COCOAPODS: 1.8.4
