@@ -59,6 +59,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func authorizedAppleMusic(notification: NSNotification) {
+        
     }
 
     // MARK: - Actions

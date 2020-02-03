@@ -29,9 +29,9 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-tT-590">
-                                <rect key="frame" x="0.0" y="248" width="414" height="400"/>
+                                <rect key="frame" x="0.0" y="273" width="414" height="350"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="h7C-A6-TK6"/>
+                                    <constraint firstAttribute="height" constant="350" id="h7C-A6-TK6"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="dEu-iW-3sb" kind="embed" id="xCS-7i-jon"/>
@@ -66,10 +66,10 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
-                                                <color key="value" red="0.0" green="0.36470588240000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.0" green="0.36470588240000001" blue="0.73725490199999999" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rippleSpeed">
-                                                <real key="value" value="1.5"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -236,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61b-h4-KCw" customClass="PMSuperButton" customModule="PMSuperButton">
-                                <rect key="frame" x="60" y="100" width="230" height="50"/>
+                                <rect key="frame" x="60" y="170" width="230" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9yz-j6-kp1"/>
                                     <constraint firstAttribute="width" constant="230" id="H7I-IW-quU"/>
@@ -269,8 +269,14 @@
                                     <action selector="pressedSpotifyButton:" destination="QZ9-7N-ngq" eventType="touchUpInside" id="8RR-f5-DB7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your music service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shi-9A-PeB">
+                                <rect key="frame" x="97.5" y="64" width="155" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoi-as-KGy" customClass="PMSuperButton" customModule="PMSuperButton">
-                                <rect key="frame" x="60" y="170" width="230" height="50"/>
+                                <rect key="frame" x="60" y="100" width="230" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="ATY-sj-1Kj"/>
                                     <constraint firstAttribute="height" constant="50" id="oHC-Io-ltq"/>
@@ -301,22 +307,18 @@
                                     <action selector="pressedAppleMusicButton:" destination="QZ9-7N-ngq" eventType="touchUpInside" id="2w2-q7-maY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your music service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shi-9A-PeB">
-                                <rect key="frame" x="97.5" y="64" width="155" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="61b-h4-KCw" firstAttribute="top" secondItem="eoi-as-KGy" secondAttribute="bottom" constant="20" id="1wc-0o-Mxm"/>
+                            <constraint firstItem="61b-h4-KCw" firstAttribute="top" secondItem="eoi-as-KGy" secondAttribute="bottom" constant="20" id="M4G-IP-c09"/>
                             <constraint firstItem="61b-h4-KCw" firstAttribute="centerX" secondItem="KbR-Ax-ldJ" secondAttribute="centerX" id="T2b-kt-NxD"/>
-                            <constraint firstItem="eoi-as-KGy" firstAttribute="top" secondItem="61b-h4-KCw" secondAttribute="bottom" constant="20" id="WcF-0M-qqf"/>
-                            <constraint firstItem="61b-h4-KCw" firstAttribute="centerY" secondItem="KbR-Ax-ldJ" secondAttribute="centerY" id="ahD-xn-yEE"/>
-                            <constraint firstItem="61b-h4-KCw" firstAttribute="top" secondItem="Shi-9A-PeB" secondAttribute="bottom" constant="20" id="dOE-7q-KxW"/>
+                            <constraint firstItem="eoi-as-KGy" firstAttribute="centerY" secondItem="KbR-Ax-ldJ" secondAttribute="centerY" id="rkJ-G8-06B"/>
+                            <constraint firstItem="eoi-as-KGy" firstAttribute="top" secondItem="Shi-9A-PeB" secondAttribute="bottom" constant="20" id="uTb-xQ-wEK"/>
                             <constraint firstItem="eoi-as-KGy" firstAttribute="centerX" secondItem="KbR-Ax-ldJ" secondAttribute="centerX" id="wJh-HE-AAK"/>
                             <constraint firstItem="Shi-9A-PeB" firstAttribute="centerX" secondItem="KbR-Ax-ldJ" secondAttribute="centerX" id="xfJ-xG-Pyu"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z3k-5M-0eM"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="350" height="250"/>
@@ -330,7 +332,7 @@
             <objects>
                 <viewController id="dEu-iW-3sb" customClass="SelectSongViewController" customModule="Lyrical_Banana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wjn-pV-235">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdF-sd-X9y">
@@ -366,23 +368,24 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-8J-Rqs">
-                                <rect key="frame" x="30" y="128" width="354" height="252"/>
+                                <rect key="frame" x="0.0" y="123" width="414" height="207"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="28" minY="0.0" maxX="28" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="OBp-8J-Rqs" firstAttribute="top" secondItem="xdF-sd-X9y" secondAttribute="bottom" constant="20" id="9dP-tN-mgV"/>
+                            <constraint firstItem="OBp-8J-Rqs" firstAttribute="top" secondItem="xdF-sd-X9y" secondAttribute="bottom" constant="15" id="9dP-tN-mgV"/>
                             <constraint firstAttribute="bottomMargin" secondItem="OBp-8J-Rqs" secondAttribute="bottom" constant="20" id="DXx-Js-qAn"/>
                             <constraint firstItem="xdF-sd-X9y" firstAttribute="leading" secondItem="wjn-pV-235" secondAttribute="leading" constant="25" id="Gfc-oA-uJ2"/>
                             <constraint firstItem="xdF-sd-X9y" firstAttribute="centerX" secondItem="wjn-pV-235" secondAttribute="centerX" id="Hie-n4-Vsh"/>
-                            <constraint firstAttribute="trailing" secondItem="OBp-8J-Rqs" secondAttribute="trailing" constant="30" id="lxM-UH-WMt"/>
+                            <constraint firstAttribute="trailing" secondItem="OBp-8J-Rqs" secondAttribute="trailing" id="lxM-UH-WMt"/>
                             <constraint firstItem="xdF-sd-X9y" firstAttribute="top" secondItem="wjn-pV-235" secondAttribute="topMargin" constant="30" id="scQ-eZ-Bvr"/>
                             <constraint firstAttribute="trailing" secondItem="xdF-sd-X9y" secondAttribute="trailing" constant="25" id="ttV-od-pfT"/>
-                            <constraint firstItem="OBp-8J-Rqs" firstAttribute="leading" secondItem="wjn-pV-235" secondAttribute="leading" constant="30" id="wvC-9h-DSv"/>
+                            <constraint firstItem="OBp-8J-Rqs" firstAttribute="leading" secondItem="wjn-pV-235" secondAttribute="leading" id="wvC-9h-DSv"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="gFj-wR-Syp"/>
                     </view>
                     <connections>
                         <outlet property="searchTextField" destination="oxL-Pf-y0U" id="vyS-WV-pGB"/>
