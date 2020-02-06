@@ -12,9 +12,15 @@ import Alamofire
 
 class MainViewController: UIViewController {
     
+    @IBOutlet var launchToMainTransitionView: UIView!
+
+    static var bananaLabelOrigin:CGPoint?
+    static var bananaImageViewOrigin:CGPoint?
+
     @IBOutlet var editorContainerView: UIView!
     @IBOutlet var videoListContainerView: UIView!
     
+    @IBOutlet var lyricalBananaLabel: UILabel!
     @IBOutlet var bananaImageView: UIImageView!
     @IBOutlet var noVideosCreatedLabel: UILabel!
     @IBOutlet var createNewVideoButton: PMSuperButton!
@@ -26,23 +32,31 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        MainViewController.bananaLabelOrigin = self.view.convert(lyricalBananaLabel.frame.origin, to: launchToMainTransitionView)
+        MainViewController.bananaImageViewOrigin = self.view.convert(bananaImageView.frame.origin, to: launchToMainTransitionView)
+        
         self.editorContainerView.isHidden = true
         self.musicServiceView.isHidden = true
         self.selectSongView.isHidden = true
         
+        self.createNewVideoButton.isHidden = true
+        self.noVideosCreatedLabel.isHidden = true
+        self.lyricalBananaLabel.isHidden = true
+        self.bananaImageView.isHidden = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(authorizedSpotify), name: Notification.Name("authorizedSpotify"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(authorizedAppleMusic), name: Notification.Name("authorizedAppleMusic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(launchTransitionDidComplete), name: Notification.Name("launchTransitionComplete"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     // MARK: - MainViewController
 
-
-    // MARK: - MusicServiceDelegate
-
-    @objc private func authorizedSpotify(notification: NSNotification) {
-        let accessToken = notification.userInfo?["accessToken"] as! String
-                
+    func musicPlatformToSelectSongTransition(accessToken:String?) {
         UIView.animate(withDuration: 0.2, animations: {
             self.musicServiceView.alpha = 0.0
         }) { completed in
@@ -55,11 +69,47 @@ class MainViewController: UIViewController {
             self.selectSongView.alpha = 1.0
         })
         
-        NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: ["accessToken": accessToken])
+        var userInfo:[AnyHashable:Any]? = nil
+        if let accessToken = accessToken {
+            userInfo = ["accessToken": accessToken]
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: userInfo)
+    }
+    
+    @objc private func launchTransitionDidComplete(notification: NSNotification) {
+        self.createNewVideoButton.isHidden = false
+        self.noVideosCreatedLabel.isHidden = false
+        self.lyricalBananaLabel.isHidden = false
+        self.bananaImageView.isHidden = false
+        
+        self.createNewVideoButton.alpha = 0.0
+        self.noVideosCreatedLabel.alpha = 0.0
+        self.lyricalBananaLabel.alpha = 0.0
+        self.bananaImageView.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.1, delay: 2.30, animations: {
+            self.lyricalBananaLabel.alpha = 1.0
+            self.bananaImageView.alpha = 1.0
+        })
+        
+        UIView.animate(withDuration: 0.25, delay: 2.30, animations: {
+            self.createNewVideoButton.alpha = 1.0
+            self.noVideosCreatedLabel.alpha = 1.0
+        })
+        
+//        UIView.animate(withDuration: 0.0, delay: 2.4, animations: {
+//            self.bananaImageView.alpha = 1.0
+//        })
+    }
+
+    @objc private func authorizedSpotify(notification: NSNotification) {
+        let accessToken = notification.userInfo?["accessToken"] as! String
+        musicPlatformToSelectSongTransition(accessToken: accessToken)
     }
     
     @objc private func authorizedAppleMusic(notification: NSNotification) {
-        
+        //musicPlatformToSelectSongTransition(accessToken: nil)
     }
 
     // MARK: - Actions

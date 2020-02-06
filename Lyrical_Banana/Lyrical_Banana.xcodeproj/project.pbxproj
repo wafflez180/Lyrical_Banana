@@ -13,6 +13,7 @@
 		CA0BB0AF23E77AA10093F5CE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */; };
 		CA0BB0B023E77AA10093F5CE /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */; };
 		CA0BB0B223E795C40093F5CE /* SpotifySong.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0B123E795C40093F5CE /* SpotifySong.swift */; };
+		CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */; };
 		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
 		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
@@ -20,7 +21,8 @@
 		CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75223E4E08500DAB094 /* MainViewController.swift */; };
 		CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75423E4E08500DAB094 /* Main.storyboard */; };
 		CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75723E4E08800DAB094 /* Assets.xcassets */; };
-		CA8BF75B23E4E08800DAB094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */; };
+		CADF933423E7E3A3002C6846 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */; };
+		CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */; };
 		D9FBEDAB02D0F6F83BE71E65 /* Pods_Lyrical_Banana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,18 +36,20 @@
 		CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongTableViewCell.swift; path = ../../../../Downloads/SongTableViewCell.swift; sourceTree = "<group>"; };
 		CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SongTableViewCell.xib; path = ../../../../Downloads/SongTableViewCell.xib; sourceTree = "<group>"; };
 		CA0BB0B123E795C40093F5CE /* SpotifySong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySong.swift; sourceTree = "<group>"; };
+		CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchToMainTransitionViewController.swift; sourceTree = "<group>"; };
 		CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sinhala_MN.ttc; sourceTree = "<group>"; };
 		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lyrical_Banana-Bridging-Header.h"; sourceTree = "<group>"; };
-		CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyrical_Banana.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA8BF74B23E4E08500DAB094 /* Lyrical Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lyrical Banana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CA8BF75223E4E08500DAB094 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CA8BF75523E4E08500DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA8BF75723E4E08800DAB094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA8BF75A23E4E08800DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA8BF75C23E4E08800DAB094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +120,7 @@
 		CA8BF74C23E4E08500DAB094 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */,
+				CA8BF74B23E4E08500DAB094 /* Lyrical Banana.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,9 +137,11 @@
 				CA0BB0A623E76F780093F5CE /* SelectSongViewController.swift */,
 				CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */,
 				CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */,
+				CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */,
 				CA0BB0B323E795C80093F5CE /* Models */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
-				CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */,
+				CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */,
+				CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */,
 				CA0BB0AA23E770740093F5CE /* Extensions */,
 				CA49ADB623E4E3DC00F31630 /* Fonts */,
 				CA8BF75C23E4E08800DAB094 /* Info.plist */,
@@ -163,7 +169,7 @@
 			);
 			name = Lyrical_Banana;
 			productName = Lyrical_Banana;
-			productReference = CA8BF74B23E4E08500DAB094 /* Lyrical_Banana.app */;
+			productReference = CA8BF74B23E4E08500DAB094 /* Lyrical Banana.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -205,8 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0BB0B023E77AA10093F5CE /* SongTableViewCell.xib in Resources */,
-				CA8BF75B23E4E08800DAB094 /* LaunchScreen.storyboard in Resources */,
 				CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */,
+				CADF933423E7E3A3002C6846 /* Launch Screen.storyboard in Resources */,
 				CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +268,9 @@
 			files = (
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
 				CA0BB0B223E795C40093F5CE /* SpotifySong.swift in Sources */,
+				CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */,
 				CA0BB0A923E7706E0093F5CE /* UIView+Extension.swift in Sources */,
+				CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */,
 				CA0BB0A723E76F780093F5CE /* SelectSongViewController.swift in Sources */,
 				CA0BB0A523E760300093F5CE /* MusicServiceViewController.swift in Sources */,
 				CA0BB0AF23E77AA10093F5CE /* SongTableViewCell.swift in Sources */,
@@ -281,14 +289,6 @@
 				CA8BF75523E4E08500DAB094 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CA8BF75923E4E08800DAB094 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA8BF75A23E4E08800DAB094 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -435,7 +435,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthur.Lyrical-Banana";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Lyrical Banana";
 				SWIFT_OBJC_BRIDGING_HEADER = "Lyrical_Banana/Lyrical_Banana-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -470,7 +470,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthur.Lyrical-Banana";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Lyrical Banana";
 				SWIFT_OBJC_BRIDGING_HEADER = "Lyrical_Banana/Lyrical_Banana-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

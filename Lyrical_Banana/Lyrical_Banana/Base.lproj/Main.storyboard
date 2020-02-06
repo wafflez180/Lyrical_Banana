@@ -15,6 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-0F-iOH" userLabel="Transition Container View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <segue destination="IrV-Cn-4jz" kind="embed" id="lnb-kM-bVl"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYN-mw-bKJ" userLabel="Editor Container View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,9 +47,9 @@
                                 <rect key="frame" x="0.0" y="102" width="414" height="760"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven’t created a video yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-7P-jpE">
-                                        <rect key="frame" x="84.5" y="160" width="245" height="21"/>
+                                        <rect key="frame" x="84.5" y="207" width="245" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-3Q-vtT" customClass="PMSuperButton" customModule="PMSuperButton">
@@ -76,8 +82,11 @@
                                             <action selector="pressedCreateNewVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bL-Bd-uQE"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="krB-fy-67L">
-                                        <rect key="frame" x="189.5" y="90" width="35" height="40"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vibing_music_banana" translatesAutoresizingMaskIntoConstraints="NO" id="krB-fy-67L">
+                                        <rect key="frame" x="147.5" y="90" width="119" height="87"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="87" id="N9k-op-a8G"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,16 +114,20 @@
                             <constraint firstItem="DOr-is-vXV" firstAttribute="trailing" secondItem="gaJ-tT-590" secondAttribute="trailing" id="E5p-9S-eYw"/>
                             <constraint firstItem="LYN-mw-bKJ" firstAttribute="trailing" secondItem="DOr-is-vXV" secondAttribute="trailing" id="EZe-wx-ibc"/>
                             <constraint firstItem="OM4-xG-aie" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="Egt-6q-h2V"/>
+                            <constraint firstItem="SaN-0F-iOH" firstAttribute="top" secondItem="DOr-is-vXV" secondAttribute="top" id="Iy4-ob-wEd"/>
                             <constraint firstItem="DOr-is-vXV" firstAttribute="bottom" secondItem="Qa5-Kh-tTw" secondAttribute="bottom" id="L6L-mg-n96"/>
+                            <constraint firstItem="DOr-is-vXV" firstAttribute="bottom" secondItem="SaN-0F-iOH" secondAttribute="bottom" id="Lp9-Kw-Gcc"/>
                             <constraint firstItem="3Eg-hb-pUV" firstAttribute="centerX" secondItem="rTO-l5-naI" secondAttribute="centerX" id="McS-fr-F5n"/>
                             <constraint firstItem="OM4-xG-aie" firstAttribute="top" secondItem="3Eg-hb-pUV" secondAttribute="bottom" id="OS6-6J-wYg"/>
                             <constraint firstItem="OM4-xG-aie" firstAttribute="leading" secondItem="DOr-is-vXV" secondAttribute="leading" id="Pk4-Os-EQ7"/>
+                            <constraint firstItem="SaN-0F-iOH" firstAttribute="leading" secondItem="DOr-is-vXV" secondAttribute="leading" id="TDb-Hs-aeV"/>
                             <constraint firstItem="gaJ-tT-590" firstAttribute="centerY" secondItem="rTO-l5-naI" secondAttribute="centerY" id="W4t-Q9-P8d"/>
                             <constraint firstItem="LYN-mw-bKJ" firstAttribute="bottom" secondItem="DOr-is-vXV" secondAttribute="bottom" id="Yii-9x-Pa6"/>
                             <constraint firstItem="LYN-mw-bKJ" firstAttribute="top" secondItem="DOr-is-vXV" secondAttribute="top" id="en6-CV-fa9"/>
                             <constraint firstItem="Qa5-Kh-tTw" firstAttribute="leading" secondItem="DOr-is-vXV" secondAttribute="leading" id="fM2-iD-ddE"/>
                             <constraint firstItem="DOr-is-vXV" firstAttribute="trailing" secondItem="Qa5-Kh-tTw" secondAttribute="trailing" id="lnf-0I-pee"/>
                             <constraint firstItem="3Eg-hb-pUV" firstAttribute="top" secondItem="DOr-is-vXV" secondAttribute="top" constant="20" id="rvY-D3-P1q"/>
+                            <constraint firstItem="DOr-is-vXV" firstAttribute="trailing" secondItem="SaN-0F-iOH" secondAttribute="trailing" id="sPA-oX-sPQ"/>
                             <constraint firstItem="Qa5-Kh-tTw" firstAttribute="top" secondItem="3Eg-hb-pUV" secondAttribute="bottom" constant="8" symbolic="YES" id="vwl-Lq-zv7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DOr-is-vXV"/>
@@ -123,6 +136,8 @@
                         <outlet property="bananaImageView" destination="krB-fy-67L" id="rf7-6O-3Xi"/>
                         <outlet property="createNewVideoButton" destination="xRc-3Q-vtT" id="1Az-2f-RQW"/>
                         <outlet property="editorContainerView" destination="LYN-mw-bKJ" id="70D-Or-e0C"/>
+                        <outlet property="launchToMainTransitionView" destination="SaN-0F-iOH" id="ADc-yB-JmT"/>
+                        <outlet property="lyricalBananaLabel" destination="3Eg-hb-pUV" id="ZGz-FP-dWf"/>
                         <outlet property="musicServiceView" destination="OM4-xG-aie" id="ogj-sl-TCk"/>
                         <outlet property="noVideosCreatedLabel" destination="RFy-7P-jpE" id="MLf-Fc-Gvz"/>
                         <outlet property="selectMusicServiceLabel" destination="Shi-9A-PeB" id="wRI-zp-Lu9"/>
@@ -396,12 +411,53 @@
             </objects>
             <point key="canvasLocation" x="960.86956521739137" y="795.53571428571422"/>
         </scene>
+        <!--Launch To Main Transition View Controller-->
+        <scene sceneID="9rD-BW-9cN">
+            <objects>
+                <viewController modalTransitionStyle="flipHorizontal" id="IrV-Cn-4jz" customClass="LaunchToMainTransitionViewController" customModule="Lyrical_Banana" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FCf-C8-OlI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lyrical Banana" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiZ-A3-UIO">
+                                <rect key="frame" x="98" y="306" width="218.5" height="30"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Black" family="Hoefler Text" pointSize="30"/>
+                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana_transition" translatesAutoresizingMaskIntoConstraints="NO" id="2sZ-k8-cc8">
+                                <rect key="frame" x="119.5" y="318.5" width="175" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="9Yd-lu-QZq"/>
+                                    <constraint firstAttribute="width" constant="175" id="rjZ-82-LcS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2sZ-k8-cc8" firstAttribute="centerY" secondItem="FCf-C8-OlI" secondAttribute="centerY" constant="-3" id="UcQ-Uo-ORd"/>
+                            <constraint firstItem="2sZ-k8-cc8" firstAttribute="centerX" secondItem="FCf-C8-OlI" secondAttribute="centerX" id="YXC-YD-JIb"/>
+                            <constraint firstItem="eiZ-A3-UIO" firstAttribute="centerX" secondItem="FCf-C8-OlI" secondAttribute="centerX" id="gSH-35-q2j"/>
+                            <constraint firstItem="eiZ-A3-UIO" firstAttribute="centerY" secondItem="FCf-C8-OlI" secondAttribute="centerY" constant="-88" id="kBR-LB-KJ3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zIG-Qy-Ur3"/>
+                    </view>
+                    <connections>
+                        <outlet property="bananaImageView" destination="2sZ-k8-cc8" id="HUk-7p-Uki"/>
+                        <outlet property="lyricalBananaLabel" destination="eiZ-A3-UIO" id="BHT-xZ-6FB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7m-Yv-Gum" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-612" y="139"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Search Icon" width="13" height="13"/>
         <image name="apple-logo" width="21" height="25"/>
-        <image name="banana" width="35" height="40"/>
+        <image name="banana_transition" width="172" height="172"/>
         <image name="spotify-logo" width="24" height="24"/>
+        <image name="vibing_music_banana" width="119" height="202"/>
         <image name="x-button" width="13" height="13"/>
     </resources>
 </document>

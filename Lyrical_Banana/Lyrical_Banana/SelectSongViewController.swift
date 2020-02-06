@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import MediaPlayer
+import StoreKit
 
 class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource {
     
@@ -27,12 +29,14 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
         songTableView.dataSource = self
         songTableView.register(UINib.init(nibName: "SongTableViewCell", bundle: nil), forCellReuseIdentifier: "SongCell")
         songTableView.tableFooterView = UIView()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didAppear), name: Notification.Name("showSelectSongView"), object: nil)
     }
     
     @objc private func didAppear(notification: NSNotification) {
-        accessToken = notification.userInfo?["accessToken"] as! String
+        if let userInfo = notification.userInfo {
+            accessToken = userInfo["accessToken"] as! String
+        }
         searchTextField.becomeFirstResponder()
     }
     
@@ -76,6 +80,22 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
             return true
         }
         
+        let cloudServiceController = SKCloudServiceController()
+        cloudServiceController.requestStorefrontCountryCode { countryCode, error in
+            // Use the value in countryCode for subsequent API requests
+            AF.request("https://api.music.apple.com/v1/catalog/\(countryCode)/search", method: .get, parameters: ["term":searchText.replacingOccurrences(of: " ", with: "+"), "types":"songs"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
+                let jsonResponse = JSON.init(response.value!)
+
+                self.songList = []
+                for spotifySongJSON in jsonResponse["tracks"]["items"].array! {
+                    self.songList.append(SpotifySong.init(json: spotifySongJSON))
+                }
+                
+                self.songTableView.reloadData()
+                //debugPrint(response)
+            }
+        }
+
         AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":accessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
             let jsonResponse = JSON.init(response.value!)
 
