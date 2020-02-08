@@ -19,7 +19,7 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     @IBOutlet var songTableView: UITableView!
     
     var accessToken: String?
-    var songList: [SpotifySong] = []
+    var songList: [SearchSongResult] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,13 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     @objc private func didAppear(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            accessToken = userInfo["accessToken"] as! String
+            if let accessToken = userInfo["accessToken"] as? String {
+                self.accessToken = accessToken
+            }
         }
-        searchTextField.becomeFirstResponder()
+        self.searchTextField.becomeFirstResponder()
     }
-    
+        
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,32 +82,50 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
             return true
         }
         
-        let cloudServiceController = SKCloudServiceController()
-        cloudServiceController.requestStorefrontCountryCode { countryCode, error in
-            // Use the value in countryCode for subsequent API requests
-            AF.request("https://api.music.apple.com/v1/catalog/\(countryCode)/search", method: .get, parameters: ["term":searchText.replacingOccurrences(of: " ", with: "+"), "types":"songs"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
+        if MainViewController.authorizedAppleMusic {
+//            let applicationMusicPlayer = MPMusicPlayerController.applicationMusicPlayer
+//            applicationMusicPlayer.setQueueWithStoreIDs(ids)
+//            applicationMusicPlayer.play()
+//
+            
+            SKCloudServiceController().requestStorefrontCountryCode { countryCode, error in
+                // Use the value in countryCode for subsequent API requests
+//                AF.request("https://api.music.apple.com/v1/catalog/\(countryCode)/search", method: .get, parameters: ["term":searchText.replacingOccurrences(of: " ", with: "+"), "types":"songs"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
+//                    let jsonResponse = JSON.init(response.value!)
+//
+//                    self.songList = []
+//                    for spotifySongJSON in jsonResponse["tracks"]["items"].array! {
+//                        self.songList.append(SpotifySong.init(json: spotifySongJSON))
+//                    }
+//                    
+//                    self.songTableView.reloadData()
+//                    //debugPrint(response)
+//                }
+                AF.request("https://itunes.apple.com/search", method: .get, parameters: ["term":searchText.replacingOccurrences(of: " ", with: "+"), "media":"music", "limit":"15"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
+                    let jsonResponse = JSON.init(response.value!)
+                    
+                    self.songList = []
+                    for appleMusicSongJSON in jsonResponse["results"].array! {
+                        self.songList.append(AppleMusicSongResult.init(json: appleMusicSongJSON))
+                    }
+
+                    self.songTableView.reloadData()
+                    debugPrint(response)
+                }
+
+            }
+        } else if MainViewController.authorizedSpotify {
+            AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":accessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
                 let jsonResponse = JSON.init(response.value!)
 
                 self.songList = []
                 for spotifySongJSON in jsonResponse["tracks"]["items"].array! {
-                    self.songList.append(SpotifySong.init(json: spotifySongJSON))
+                    self.songList.append(SpotifySongResult.init(json: spotifySongJSON))
                 }
-                
+
                 self.songTableView.reloadData()
                 //debugPrint(response)
             }
-        }
-
-        AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":accessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
-            let jsonResponse = JSON.init(response.value!)
-
-            self.songList = []
-            for spotifySongJSON in jsonResponse["tracks"]["items"].array! {
-                self.songList.append(SpotifySong.init(json: spotifySongJSON))
-            }
-            
-            self.songTableView.reloadData()
-            //debugPrint(response)
         }
         
         return true

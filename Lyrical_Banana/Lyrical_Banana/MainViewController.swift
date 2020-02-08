@@ -28,6 +28,9 @@ class MainViewController: UIViewController {
     @IBOutlet var musicServiceView: UIView!
     @IBOutlet var selectSongView: UIView!
     
+    static var authorizedAppleMusic = false
+    static var authorizedSpotify = false
+    
     // MARK: - UIViewController
 
     override func viewDidLoad() {
@@ -57,24 +60,26 @@ class MainViewController: UIViewController {
     // MARK: - MainViewController
 
     func musicPlatformToSelectSongTransition(accessToken:String?) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.musicServiceView.alpha = 0.0
-        }) { completed in
-            self.musicServiceView.isHidden = false
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.musicServiceView.alpha = 0.0
+            }) { completed in
+                self.musicServiceView.isHidden = false
+                
+                var userInfo:[AnyHashable:Any]? = nil
+                if let accessToken = accessToken {
+                    userInfo = ["accessToken": accessToken]
+                }
+                
+                NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: userInfo)
+            }
+
+            self.selectSongView.isHidden = false
+            self.selectSongView.alpha = 0.0
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+                self.selectSongView.alpha = 1.0
+            })
         }
-        
-        self.selectSongView.isHidden = false
-        self.selectSongView.alpha = 0.0
-        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
-            self.selectSongView.alpha = 1.0
-        })
-        
-        var userInfo:[AnyHashable:Any]? = nil
-        if let accessToken = accessToken {
-            userInfo = ["accessToken": accessToken]
-        }
-        
-        NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: userInfo)
     }
     
     @objc private func launchTransitionDidComplete(notification: NSNotification) {
@@ -88,12 +93,12 @@ class MainViewController: UIViewController {
         self.lyricalBananaLabel.alpha = 0.0
         self.bananaImageView.alpha = 0.0
         
-        UIView.animate(withDuration: 0.1, delay: 2.30, animations: {
+        UIView.animate(withDuration: 0.05, delay: 2.30, animations: {
             self.lyricalBananaLabel.alpha = 1.0
             self.bananaImageView.alpha = 1.0
         })
         
-        UIView.animate(withDuration: 0.25, delay: 2.30, animations: {
+        UIView.animate(withDuration: 0.25, delay: 2.15, animations: {
             self.createNewVideoButton.alpha = 1.0
             self.noVideosCreatedLabel.alpha = 1.0
         })
@@ -104,12 +109,16 @@ class MainViewController: UIViewController {
     }
 
     @objc private func authorizedSpotify(notification: NSNotification) {
+        MainViewController.authorizedSpotify = true
+
         let accessToken = notification.userInfo?["accessToken"] as! String
         musicPlatformToSelectSongTransition(accessToken: accessToken)
     }
     
     @objc private func authorizedAppleMusic(notification: NSNotification) {
-        //musicPlatformToSelectSongTransition(accessToken: nil)
+        MainViewController.authorizedAppleMusic = true
+        
+        musicPlatformToSelectSongTransition(accessToken: nil)
     }
 
     // MARK: - Actions
