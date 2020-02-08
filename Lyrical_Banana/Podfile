@@ -10,6 +10,7 @@ target 'Lyrical_Banana' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher'
   pod 'SwiftGifOrigin', '~> 1.7.0'
+  pod "SkeletonView"
 
   # Pods for Lyrical_Banana
 

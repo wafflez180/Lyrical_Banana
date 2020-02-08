@@ -4,6 +4,7 @@ PODS:
     - Kingfisher/Core (= 5.13.0)
   - Kingfisher/Core (5.13.0)
   - PMSuperButton (3.0.2)
+  - SkeletonView (1.8.3)
   - SwiftGifOrigin (1.7.0)
   - SwiftyJSON (4.3.0)
 
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - Kingfisher
   - PMSuperButton
+  - SkeletonView
   - SwiftGifOrigin (~> 1.7.0)
   - SwiftyJSON (~> 4.0)
 
@@ -19,6 +21,7 @@ SPEC REPOS:
     - Alamofire
     - Kingfisher
     - PMSuperButton
+    - SkeletonView
     - SwiftGifOrigin
     - SwiftyJSON
 
@@ -26,9 +29,10 @@ SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
   PMSuperButton: 72105fef415890c8792a9e5a784f75c461066f8b
+  SkeletonView: ce0c2a2e8154c57b32f5b31b65f4cb92ca119861
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 10cbcdf0afce83d7c5fed2e825d7af5a58817f4e
+PODFILE CHECKSUM: 249840733b62c17f9668b2ede5602308ebbe4402
 
 COCOAPODS: 1.8.4

@@ -50,24 +50,10 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongTableViewCell
-        let song = songList[indexPath.row]
         
-        songCell.nameLabel.text = songList[indexPath.row].name
-        
-        let seconds = Int((song.durationMilliSec/1000)%60)
-            , minutes = Int((song.durationMilliSec/(1000*60))%60)
-        songCell.durationLabel.text = "\(minutes):\(seconds)"
-        
-        var artistLabelText = ""
-        for artistName in song.artists {
-            artistLabelText += artistName
-            if songList[indexPath.row].artists.last != artistName {
-                artistLabelText += ", "
-            }
-        }
-        songCell.artistLabel.text = artistLabelText
-        songCell.songImageView?.kf.setImage(with: URL(string: song.albumImageLink))
-        
+        let songResult = songList[indexPath.row]
+        songCell.configureCellWith(songResult: songResult)
+
         return songCell
     }
 
