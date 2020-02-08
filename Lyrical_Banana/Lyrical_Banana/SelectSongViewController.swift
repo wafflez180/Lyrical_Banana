@@ -13,19 +13,20 @@ import Kingfisher
 import MediaPlayer
 import StoreKit
 
-class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource {
+class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var songTableView: UITableView!
     
     var accessToken: String?
     var songList: [SearchSongResult] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchTextField.delegate = self
         
+        songTableView.delegate = self
         songTableView.dataSource = self
         songTableView.register(UINib.init(nibName: "SongTableViewCell", bundle: nil), forCellReuseIdentifier: "SongCell")
         songTableView.tableFooterView = UIView()
@@ -55,6 +56,13 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
         songCell.configureCellWith(songResult: songResult)
 
         return songCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let songResult = songList[indexPath.row]
+        
+        searchTextField.resignFirstResponder()
+        NotificationCenter.default.post(name: Notification.Name("didSelectSong"), object: nil, userInfo: ["selectedSong":songResult])
     }
 
     // MARK: - UITextFieldDelegate

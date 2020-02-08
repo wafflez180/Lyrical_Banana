@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
     
     static var authorizedAppleMusic = false
     static var authorizedSpotify = false
+    var selectedSong:SearchSongResult?
     
     // MARK: - UIViewController
 
@@ -51,6 +52,7 @@ class MainViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(authorizedSpotify), name: Notification.Name("authorizedSpotify"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(authorizedAppleMusic), name: Notification.Name("authorizedAppleMusic"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(launchTransitionDidComplete), name: Notification.Name("launchTransitionComplete"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSelectSong), name: Notification.Name("didSelectSong"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +84,25 @@ class MainViewController: UIViewController {
         }
     }
     
+    @objc private func didSelectSong(notification: NSNotification) {
+        self.selectedSong = notification.userInfo?["selectedSong"] as? SearchSongResult
+        
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+            self.selectSongView.alpha = 0.0
+        }) { completed in
+           self.selectSongView.isHidden = true
+           self.selectSongView.alpha = 0.0
+       }
+
+        self.editorContainerView.isHidden = false
+        self.editorContainerView.alpha = 0.0
+        UIView.animate(withDuration: 0.2, delay: 0.4, options: .curveEaseInOut, animations: {
+            self.editorContainerView.alpha = 1.0
+        }) { completed in
+
+        }
+    }
+
     @objc private func launchTransitionDidComplete(notification: NSNotification) {
         self.createNewVideoButton.isHidden = false
         self.noVideosCreatedLabel.isHidden = false
