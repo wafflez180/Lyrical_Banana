@@ -29,8 +29,6 @@ class MainViewController: UIViewController {
     @IBOutlet var selectSongView: UIView!
     
     static var authorizedAppleMusic = false
-    static var authorizedSpotify = false
-    var selectedSong:SearchSongResult?
     
     // MARK: - UIViewController
 
@@ -61,19 +59,14 @@ class MainViewController: UIViewController {
     
     // MARK: - MainViewController
 
-    func musicPlatformToSelectSongTransition(accessToken:String?) {
+    func musicServiceToSelectSongTransition() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.2, animations: {
                 self.musicServiceView.alpha = 0.0
             }) { completed in
                 self.musicServiceView.isHidden = false
                 
-                var userInfo:[AnyHashable:Any]? = nil
-                if let accessToken = accessToken {
-                    userInfo = ["accessToken": accessToken]
-                }
-                
-                NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: userInfo)
+                NotificationCenter.default.post(name: Notification.Name("showSelectSongView"), object: nil, userInfo: nil)
             }
 
             self.selectSongView.isHidden = false
@@ -84,14 +77,15 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - Notifications
+
     @objc private func didSelectSong(notification: NSNotification) {
-        self.selectedSong = notification.userInfo?["selectedSong"] as? SearchSongResult
-        
         UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
             self.selectSongView.alpha = 0.0
         }) { completed in
-           self.selectSongView.isHidden = true
-           self.selectSongView.alpha = 0.0
+            self.selectSongView.isHidden = true
+            
+            NotificationCenter.default.post(name: Notification.Name("editorDidAppear"), object: nil, userInfo: nil)
        }
 
         self.editorContainerView.isHidden = false
@@ -130,16 +124,12 @@ class MainViewController: UIViewController {
     }
 
     @objc private func authorizedSpotify(notification: NSNotification) {
-        MainViewController.authorizedSpotify = true
-
-        let accessToken = notification.userInfo?["accessToken"] as! String
-        musicPlatformToSelectSongTransition(accessToken: accessToken)
+        musicServiceToSelectSongTransition()
     }
     
     @objc private func authorizedAppleMusic(notification: NSNotification) {
         MainViewController.authorizedAppleMusic = true
-        
-        musicPlatformToSelectSongTransition(accessToken: nil)
+        musicServiceToSelectSongTransition()
     }
 
     // MARK: - Actions
@@ -160,31 +150,6 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.2, delay: 0.4, animations: {
             self.musicServiceView.alpha = 1.0
         })
-            
-//        spotifyRemote.authorizeAndPlayURI("")
-//        spotifyRemote.playerAPI?.pause()
-//
-//        print(spotifyRemote.connectionParameters)
-//        print(spotifyRemote.connectionParameters.accessToken)
-//        print((UIApplication.shared.delegate as! AppDelegate).accessToken)
-                        
-//        AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["q":"100 bands", "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: ["Authorization":""], interceptor: nil).response { response in
-//            debugPrint(response)
-//        }
-        
-        
-//        UIView.animate(withDuration: 0.2, delay: 0.4, animations: {
-//            self.editorContainerView.alpha = 1.0
-//        })
-    
-//        spotifyRemote.authorizeAndPlayURI(self.playURI)
-        
-        //spotifyRemote.playerAPI?.play(<#T##trackUri: String##String#>, asRadio: <#T##Bool#>, callback: <#T##SPTAppRemoteCallback##SPTAppRemoteCallback##(Any?, Error?) -> Void#>)
-        //spotifyRemote.playerAPI?.pause(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
-        //spotifyRemote.playerAPI?.resume(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
-        //spotifyRemote.playerAPI?.seekForward15Seconds(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
-        //spotifyRemote.playerAPI?.seekBackward15Seconds(<#T##callback: SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
-        //spotifyRemote.playerAPI?.seek(toPosition: <#T##Int#>, callback: <#T##SPTAppRemoteCallback?##SPTAppRemoteCallback?##(Any?, Error?) -> Void#>)
     }
 }
 

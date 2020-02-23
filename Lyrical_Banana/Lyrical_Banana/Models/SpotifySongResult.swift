@@ -18,7 +18,13 @@ class SpotifySongResult: SearchSongResult {
         self.albumImageLink = json["album"]["images"].array![2]["url"].stringValue
         
         for artistJSON in json["artists"].array! {
+            let artistName = artistJSON["name"].stringValue
             self.artists.append(artistJSON["name"].stringValue)
+            
+            artistLabelText += artistName
+            if (json["artists"].array!.last?["name"].stringValue)! != artistName {
+                artistLabelText += ", "
+            }
         }
     }
 }

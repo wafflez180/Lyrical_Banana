@@ -10,7 +10,7 @@ import UIKit
 import PMSuperButton
 import StoreKit
 
-class MusicServiceViewController: UIViewController, SpotifyControllerDelegate, SKCloudServiceSetupViewControllerDelegate {
+class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewControllerDelegate {
     
     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
     let cloudServiceController = SKCloudServiceController()
@@ -44,7 +44,7 @@ class MusicServiceViewController: UIViewController, SpotifyControllerDelegate, S
     // MARK: - Actions
 
     @IBAction func pressedSpotifyButton(_ sender: Any) {
-        self.sceneDelegate?.authorizeAndConnect(spotifyController: self)
+        MusicPlayerManager.shared.requestSpotifyAuthorization()
     }
     
     @IBAction func pressedAppleMusicButton(_ sender: Any) {
@@ -85,11 +85,5 @@ class MusicServiceViewController: UIViewController, SpotifyControllerDelegate, S
                 }
             }
         })
-    }
-    
-    // MARK: - Spotify Controller Delegate
-    
-    func receivedAccessToken(accessToken: String) {
-        NotificationCenter.default.post(name: Notification.Name("authorizedSpotify"), object: nil, userInfo: ["accessToken": accessToken])
     }
 }

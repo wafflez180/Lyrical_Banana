@@ -18,7 +18,6 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var songTableView: UITableView!
     
-    var accessToken: String?
     var songList: [SearchSongResult] = []
         
     override func viewDidLoad() {
@@ -35,11 +34,6 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     }
     
     @objc private func didAppear(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let accessToken = userInfo["accessToken"] as? String {
-                self.accessToken = accessToken
-            }
-        }
         self.searchTextField.becomeFirstResponder()
     }
         
@@ -59,10 +53,11 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let songResult = songList[indexPath.row]
+        let selectedSongResult = songList[indexPath.row]
+        MusicPlayerManager.shared.currentSong = selectedSongResult
         
-        searchTextField.resignFirstResponder()
-        NotificationCenter.default.post(name: Notification.Name("didSelectSong"), object: nil, userInfo: ["selectedSong":songResult])
+        self.searchTextField.resignFirstResponder()
+        NotificationCenter.default.post(name: Notification.Name("didSelectSong"), object: nil, userInfo: nil)
     }
 
     // MARK: - UITextFieldDelegate
@@ -104,12 +99,12 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
                     }
 
                     self.songTableView.reloadData()
-                    debugPrint(response)
+                    //debugPrint(response)
                 }
 
             }
-        } else if MainViewController.authorizedSpotify {
-            AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":accessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
+        } else if MusicPlayerManager.shared.authorizedSpotify {
+            AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":MusicPlayerManager.shared.spotifyAccessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
                 let jsonResponse = JSON.init(response.value!)
 
                 self.songList = []

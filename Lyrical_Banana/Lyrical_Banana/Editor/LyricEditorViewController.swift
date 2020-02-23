@@ -1,14 +1,14 @@
 //
-//  EditorViewController.swift
+//  LyricEditorViewController.swift
 //  Lyrical_Banana
 //
-//  Created by Arthur De Araujo on 1/31/20.
+//  Created by Arthur De Araujo on 2/8/20.
 //  Copyright © 2020 Arthur De Araujo. All rights reserved.
 //
 
 import UIKit
 
-class EditorViewController: UIViewController {
+class LyricEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,18 +8,16 @@
 
 import UIKit
 
-protocol SpotifyControllerDelegate: UIViewController {
-    func receivedAccessToken(accessToken: String)
-}
-
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
 
     var window: UIWindow?
 
     // MARK: - Spotify
+    
     let SpotifyClientID = "f1b391b1630347c8894107725cd1009b"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
-    var accessToken:String?
+    
+    var isFirstConnection = true
     
     lazy var configuration = SPTConfiguration(
       clientID: SpotifyClientID,
@@ -28,83 +26,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
 
     lazy var appRemote: SPTAppRemote = {
       let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-      appRemote.connectionParameters.accessToken = self.accessToken
       appRemote.delegate = self
       return appRemote
     }()
 
-    var spotifyControllerDelegate: SpotifyControllerDelegate?
-    
-    
-    func authorizeAndConnect(spotifyController: SpotifyControllerDelegate){
-        self.appRemote.authorizeAndPlayURI("")
-        self.spotifyControllerDelegate = spotifyController
-    }
-        
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         print("[SPOTIFY] connected")
-        // Connection was successful, you can begin issuing commands
-        self.appRemote.playerAPI?.delegate = self
-        self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-          if let error = error {
-            debugPrint(error.localizedDescription)
-          }
-        })
-        
-        self.spotifyControllerDelegate?.receivedAccessToken(accessToken: self.accessToken!)
-        appRemote.playerAPI?.pause()
+        if isFirstConnection {
+            isFirstConnection = false
+            MusicPlayerManager.shared.pauseSong()
+        } else {
+            MusicPlayerManager.shared.appDidExitAndReconnectToSpotify()
+        }
     }
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-      print("[SPOTIFY] disconnected")
-    }
+    
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-      print("[SPOTIFY] failed")
+        print("[SPOTIFY] failed")
+        MusicPlayerManager.shared.failedSpotifyAuthorization(error: error!.localizedDescription)
     }
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-      debugPrint("[SPOTIFY] Track name: %@", playerState.track.name)
+
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+        print("[SPOTIFY] disconnected")
     }
     
     // MARK: - Scene Delegate
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-      if self.appRemote.isConnected {
-        self.appRemote.disconnect()
-      }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+      MusicPlayerManager.shared.appWillResignActive()
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-      if let _ = self.appRemote.connectionParameters.accessToken {
-        self.appRemote.connect()
-      }
+    func sceneDidBecomeActive(_ scene: UIScene) {
+      MusicPlayerManager.shared.appDidBecomeActive()
     }
     
+    // Deeplink to the Spotify App
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else {
             return
         }
 
         let parameters = appRemote.authorizationParameters(from: url);
-
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
             appRemote.connectionParameters.accessToken = access_token
-            self.accessToken = access_token
+            MusicPlayerManager.shared.spotifyAccessToken = access_token
+            MusicPlayerManager.shared.didAuthorizeSpotify()
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            // Show the error
+            MusicPlayerManager.shared.failedSpotifyAuthorization(error: error_description)
         }
     }
     
-    func sceneDidBecomeActive(_ scene: UIScene) {
-      if let _ = self.appRemote.connectionParameters.accessToken {
-        self.appRemote.connect()
-      }
-        }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-      if self.appRemote.isConnected {
-        self.appRemote.disconnect()
-      }
-    }
-
+    // MARK: - Not Utilized
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

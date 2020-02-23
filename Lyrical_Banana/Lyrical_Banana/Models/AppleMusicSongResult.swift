@@ -17,5 +17,6 @@ class AppleMusicSongResult: SearchSongResult {
         self.durationMilliSec = json["trackTimeMillis"].intValue
         self.albumImageLink = json["artworkUrl100"].stringValue
         self.artists = [json["artistName"].stringValue]
+        self.artistLabelText = json["artistName"].stringValue
     }
 }

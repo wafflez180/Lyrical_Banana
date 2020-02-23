@@ -193,29 +193,44 @@
                                     <segue destination="e7H-ke-FOa" kind="embed" id="lq1-pB-eng"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbx-wT-96N">
+                                <rect key="frame" x="0.0" y="618" width="414" height="200"/>
+                                <connections>
+                                    <segue destination="3Vx-UD-DlE" kind="embed" id="egd-7z-2WW"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RRo-AI-v8A" firstAttribute="centerX" secondItem="vU4-Bw-UFB" secondAttribute="centerX" id="At3-Gu-TiX"/>
                             <constraint firstItem="Bul-K1-k1Y" firstAttribute="top" secondItem="vU4-Bw-UFB" secondAttribute="topMargin" id="CP7-t3-opO"/>
+                            <constraint firstItem="sbx-wT-96N" firstAttribute="top" secondItem="v7z-VQ-AHT" secondAttribute="bottom" constant="106" id="ETS-Eb-WJs"/>
+                            <constraint firstItem="aSo-OU-lag" firstAttribute="bottom" secondItem="sbx-wT-96N" secondAttribute="bottom" id="JMI-Fp-A51"/>
                             <constraint firstItem="i73-OY-lvE" firstAttribute="top" secondItem="RRo-AI-v8A" secondAttribute="bottom" constant="52" id="Osh-0X-Gw1"/>
                             <constraint firstItem="v7z-VQ-AHT" firstAttribute="top" secondItem="i73-OY-lvE" secondAttribute="bottom" constant="65" id="W2V-i4-a6T"/>
                             <constraint firstItem="RRo-AI-v8A" firstAttribute="top" secondItem="vU4-Bw-UFB" secondAttribute="topMargin" constant="20" id="g3K-co-dAs"/>
+                            <constraint firstItem="aSo-OU-lag" firstAttribute="trailing" secondItem="sbx-wT-96N" secondAttribute="trailing" id="hxQ-vZ-SRj"/>
                             <constraint firstItem="i73-OY-lvE" firstAttribute="centerX" secondItem="vU4-Bw-UFB" secondAttribute="centerX" id="r6l-jK-nyg"/>
+                            <constraint firstItem="sbx-wT-96N" firstAttribute="leading" secondItem="aSo-OU-lag" secondAttribute="leading" id="uVM-Qm-kAd"/>
                             <constraint firstItem="Bul-K1-k1Y" firstAttribute="leading" secondItem="vU4-Bw-UFB" secondAttribute="leadingMargin" id="v8o-sU-hWL"/>
                             <constraint firstItem="v7z-VQ-AHT" firstAttribute="centerX" secondItem="vU4-Bw-UFB" secondAttribute="centerX" id="zzy-d3-EyS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSo-OU-lag"/>
                     </view>
+                    <connections>
+                        <outlet property="imageSearchContainerView" destination="v7z-VQ-AHT" id="6eQ-g8-YkX"/>
+                        <outlet property="lyricEditorContainerView" destination="i73-OY-lvE" id="2F4-L8-t60"/>
+                        <outlet property="songPlayerContainerView" destination="sbx-wT-96N" id="wEL-iH-qyW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLl-ie-3Os" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="961" y="139"/>
         </scene>
-        <!--View Controller-->
+        <!--Lyric Editor View Controller-->
         <scene sceneID="Ndv-zh-NDW">
             <objects>
-                <viewController id="gEJ-YS-199" sceneMemberID="viewController">
+                <viewController id="gEJ-YS-199" customClass="LyricEditorViewController" customModule="Lyrical_Banana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gLz-ry-a8J">
                         <rect key="frame" x="0.0" y="0.0" width="255" height="173"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="1730" y="-205"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Search View Controller-->
         <scene sceneID="XyE-9D-pX3">
             <objects>
-                <viewController id="e7H-ke-FOa" sceneMemberID="viewController">
+                <viewController id="e7H-ke-FOa" customClass="ImageSearchViewController" customModule="Lyrical_Banana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RCK-qF-j2x">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abj-hR-ucD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="139"/>
+            <point key="canvasLocation" x="1793" y="90"/>
         </scene>
         <!--Music Service View Controller-->
         <scene sceneID="jSf-K9-bve">
@@ -451,8 +466,97 @@
             </objects>
             <point key="canvasLocation" x="-612" y="139"/>
         </scene>
+        <!--Song Player View Controller-->
+        <scene sceneID="7L3-op-Y6z">
+            <objects>
+                <viewController id="3Vx-UD-DlE" customClass="SongPlayerViewController" customModule="Lyrical_Banana" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wkD-8p-76S">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeJ-er-EPb">
+                                <rect key="frame" x="102.5" y="141" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="BSC-NQ-a5K"/>
+                                    <constraint firstAttribute="width" constant="75" id="a1x-d5-saJ"/>
+                                </constraints>
+                                <state key="normal" image="Rewind"/>
+                                <connections>
+                                    <action selector="pressedBackward:" destination="3Vx-UD-DlE" eventType="touchUpInside" id="CCU-Kt-Gni"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Be0-94-C9X">
+                                <rect key="frame" x="187.5" y="141" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="7c7-Br-CdF"/>
+                                    <constraint firstAttribute="width" constant="75" id="NTm-sg-90b"/>
+                                </constraints>
+                                <state key="normal" image="Pause"/>
+                                <connections>
+                                    <action selector="pressedPauseOrPlay:" destination="3Vx-UD-DlE" eventType="touchUpInside" id="3U4-0f-anv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZX-Fo-fnf">
+                                <rect key="frame" x="272.5" y="141" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="b6o-Sc-b0a"/>
+                                    <constraint firstAttribute="height" constant="75" id="gUv-yh-3sT"/>
+                                </constraints>
+                                <state key="normal" image="Forward"/>
+                                <connections>
+                                    <action selector="pressedForward:" destination="3Vx-UD-DlE" eventType="touchUpInside" id="2H6-oo-A73"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blessings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3J-Mm-crN">
+                                <rect key="frame" x="75" y="58" width="300" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="DoI-xu-9Sw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chance — Coloring Book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoY-dl-AEr">
+                                <rect key="frame" x="100" y="82" width="250" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="G9J-V4-vPV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UoY-dl-AEr" firstAttribute="top" secondItem="g3J-Mm-crN" secondAttribute="bottom" id="9e7-hM-SgP"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Be0-94-C9X" secondAttribute="bottom" constant="50" id="NWJ-1w-lci"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GZX-Fo-fnf" secondAttribute="bottom" constant="50" id="Of5-Su-5TY"/>
+                            <constraint firstItem="Be0-94-C9X" firstAttribute="top" secondItem="UoY-dl-AEr" secondAttribute="bottom" constant="35" id="RLN-MG-2kA"/>
+                            <constraint firstItem="g3J-Mm-crN" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="YSF-9y-JTM"/>
+                            <constraint firstItem="UoY-dl-AEr" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="auP-gt-3H3"/>
+                            <constraint firstItem="GZX-Fo-fnf" firstAttribute="leading" secondItem="Be0-94-C9X" secondAttribute="trailing" constant="10" id="ceq-fl-Jd4"/>
+                            <constraint firstItem="Be0-94-C9X" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="fIt-Sa-8Ph"/>
+                            <constraint firstItem="Be0-94-C9X" firstAttribute="leading" secondItem="BeJ-er-EPb" secondAttribute="trailing" constant="10" id="jP0-Zk-qRb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="BeJ-er-EPb" secondAttribute="bottom" constant="50" id="xdm-Hx-Pwr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ytx-Dn-FMV"/>
+                    </view>
+                    <size key="freeformSize" width="450" height="300"/>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="UoY-dl-AEr" id="ifx-h6-Uro"/>
+                        <outlet property="playButton" destination="Be0-94-C9X" id="yBX-Ou-wcP"/>
+                        <outlet property="songNameLabel" destination="g3J-Mm-crN" id="ZYs-rh-PoL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIf-cf-Tph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="382"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Forward" width="33" height="20"/>
+        <image name="Pause" width="24" height="32"/>
+        <image name="Rewind" width="34" height="20"/>
         <image name="Search Icon" width="13" height="13"/>
         <image name="apple-logo" width="21" height="25"/>
         <image name="banana_transition" width="172" height="172"/>
