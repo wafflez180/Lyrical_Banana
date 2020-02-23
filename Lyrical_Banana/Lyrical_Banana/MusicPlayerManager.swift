@@ -20,6 +20,7 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     var spotifyAccessToken = ""
     
     var authorizedSpotify = false
+    var needsSpotifyReauthorization = false
     
     var currentSong: SearchSongResult?
     var isPlaying:Bool = false
@@ -27,7 +28,7 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     var songPlayerViewControlDelegate: SongPlayerViewControlDelegate?
 
     // MARK: - MusicPlayerManager
-    
+        
     func songDidEnd() {
         // Restart song and pause at 0:00
         spotifyAppRemote.playerAPI?.play(currentSong!.songId, asRadio: false, callback: { result, error in
@@ -42,6 +43,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
                 print("playSongplaySong")
 //                print(result)
 //                print(error)
+                print(error)
+                print(error?.localizedDescription)
                 
                 self.spotifyAppRemote.playerAPI?.subscribe(toPlayerState: { result, error in
                     print("subscribeToPlayerState")
@@ -58,6 +61,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     }
     
     func pauseSong(){
+        reauthorizeSpotifyIfNeeded()
+
         isPlaying = false
         spotifyAppRemote.playerAPI?.pause({ result, error in
             print("puasSOOOOONG")
@@ -69,15 +74,21 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     }
     
     func resumeSong(){
+        reauthorizeSpotifyIfNeeded()
+
         isPlaying = true
+        
+
         spotifyAppRemote.playerAPI?.resume({ result, error in
-            print("playSongplaySong")
+            print("resumeSong")
 //            print(result)
 //            print(error)
         })
     }
     
     func seekBackwards10Seconds() {
+        reauthorizeSpotifyIfNeeded()
+
         spotifyAppRemote.playerAPI?.getPlayerState({ result, error in
             let playerState = (result as! SPTAppRemotePlayerState)
 //            print(result)
@@ -95,6 +106,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     }
 
     func seekForwards10Seconds() {
+        reauthorizeSpotifyIfNeeded()
+        
         spotifyAppRemote.playerAPI?.getPlayerState({ result, error in
             let playerState = (result as! SPTAppRemotePlayerState)
 //            print(result)
@@ -136,27 +149,46 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
             
             if songId != self.currentSong!.songId {
                 self.songDidEnd()
+            } else if !self.needsSpotifyReauthorization {
+                // If while in app Spotify disconnects, user resumes music, reauthorize and play music without pause
+                // TODO: Update playbackHeadPosition according to playerState or go back to prev playbackPosition
+                
+                self.pauseSong()
             }
         })
     }
     
     // MARK: - Spotify Authorization
+    
+    func reauthorizeSpotifyIfNeeded() {
+        if !spotifyAppRemote.isConnected {
+            needsSpotifyReauthorization = true
+            requestSpotifyAuthorization()
+        }
+    }
 
     func requestSpotifyAuthorization() {
         spotifyAppRemote.authorizeAndPlayURI("")
     }
-    
+        
     func failedSpotifyAuthorization(error: String) {
         print(error)
     }
     
     func didAuthorizeSpotify() {
         // Should I keep the playerStateDidChange method and delegate in MusicPlayer or SceneDelegate?
-        authorizedSpotify = true
-        spotifyAppRemote.playerAPI?.delegate = self
-        spotifyAppRemote.playerAPI?.pause()
-        
-        NotificationCenter.default.post(name: Notification.Name("authorizedSpotify"), object: nil, userInfo: nil)
+        if authorizedSpotify {
+            // iOS Limitation, after awhile if song is paused, iOS will disconnect spotify
+            // https://github.com/spotify/ios-sdk/issues/140
+            // The app has reauthorized Spotify due to disconnection
+            appDidExitAndReconnectToSpotify()
+        } else {
+            authorizedSpotify = true
+            spotifyAppRemote.playerAPI?.delegate = self
+            spotifyAppRemote.playerAPI?.pause()
+            
+            NotificationCenter.default.post(name: Notification.Name("authorizedSpotify"), object: nil, userInfo: nil)
+        }
     }
     
     // MARK: - App States

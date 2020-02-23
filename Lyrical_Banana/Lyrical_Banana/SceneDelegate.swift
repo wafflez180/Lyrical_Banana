@@ -37,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
             MusicPlayerManager.shared.pauseSong()
         } else {
             MusicPlayerManager.shared.appDidExitAndReconnectToSpotify()
+            NotificationCenter.default.post(name: Notification.Name("spotifyDidReconnect"), object: nil, userInfo: nil)
         }
     }
     
@@ -47,6 +48,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
 
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         print("[SPOTIFY] disconnected")
+        NotificationCenter.default.post(name: Notification.Name("spotifyDidDisconnecd"), object: nil, userInfo: nil)
+
+        // iOS Limitation, after awhile if song is paused, iOS will disconnect spotify
+        // https://github.com/spotify/ios-sdk/issues/140
+        print(error)
+        print(error?.localizedDescription)
     }
     
     // MARK: - Scene Delegate

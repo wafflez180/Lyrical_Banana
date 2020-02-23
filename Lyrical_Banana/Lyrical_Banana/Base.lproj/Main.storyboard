@@ -525,10 +525,32 @@
                                 <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kg-5d-9A7" customClass="PMSuperButton" customModule="PMSuperButton">
+                                <rect key="frame" x="151" y="250" width="148" height="30"/>
+                                <state key="normal" image="spotify_disconnected_alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animatedScaleWhenHighlighted">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animatedScaleDurationWhenHighlighted">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animatedScaleWhenSelected">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animatedScaleDurationWhenSelected">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressedSpotifyDisconnectedAlert:" destination="3Vx-UD-DlE" eventType="touchUpInside" id="r8i-cY-HNq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UoY-dl-AEr" firstAttribute="top" secondItem="g3J-Mm-crN" secondAttribute="bottom" id="9e7-hM-SgP"/>
+                            <constraint firstItem="1kg-5d-9A7" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="KZp-xE-xGF"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Be0-94-C9X" secondAttribute="bottom" constant="50" id="NWJ-1w-lci"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GZX-Fo-fnf" secondAttribute="bottom" constant="50" id="Of5-Su-5TY"/>
                             <constraint firstItem="Be0-94-C9X" firstAttribute="top" secondItem="UoY-dl-AEr" secondAttribute="bottom" constant="35" id="RLN-MG-2kA"/>
@@ -538,6 +560,7 @@
                             <constraint firstItem="Be0-94-C9X" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="fIt-Sa-8Ph"/>
                             <constraint firstItem="Be0-94-C9X" firstAttribute="leading" secondItem="BeJ-er-EPb" secondAttribute="trailing" constant="10" id="jP0-Zk-qRb"/>
                             <constraint firstAttribute="bottomMargin" secondItem="BeJ-er-EPb" secondAttribute="bottom" constant="50" id="xdm-Hx-Pwr"/>
+                            <constraint firstAttribute="bottom" secondItem="1kg-5d-9A7" secondAttribute="bottom" constant="20" id="z0C-6l-8aq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ytx-Dn-FMV"/>
                     </view>
@@ -546,6 +569,7 @@
                         <outlet property="artistNameLabel" destination="UoY-dl-AEr" id="ifx-h6-Uro"/>
                         <outlet property="playButton" destination="Be0-94-C9X" id="yBX-Ou-wcP"/>
                         <outlet property="songNameLabel" destination="g3J-Mm-crN" id="ZYs-rh-PoL"/>
+                        <outlet property="spotifyDisconnectedAlertButton" destination="1kg-5d-9A7" id="ByU-Iu-dnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIf-cf-Tph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -561,6 +585,7 @@
         <image name="apple-logo" width="21" height="25"/>
         <image name="banana_transition" width="172" height="172"/>
         <image name="spotify-logo" width="24" height="24"/>
+        <image name="spotify_disconnected_alert" width="148" height="30"/>
         <image name="vibing_music_banana" width="119" height="202"/>
         <image name="x-button" width="13" height="13"/>
     </resources>
