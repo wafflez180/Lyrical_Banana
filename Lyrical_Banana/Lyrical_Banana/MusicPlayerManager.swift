@@ -24,33 +24,38 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     
     var currentSong: SearchSongResult?
     var isPlaying:Bool = false
+    var restartingSong:Bool = false
     
     var songPlayerViewControlDelegate: SongPlayerViewControlDelegate?
 
     // MARK: - MusicPlayerManager
         
-    func songDidEnd() {
+    func restartSong() {
         // Restart song and pause at 0:00
-        spotifyAppRemote.playerAPI?.play(currentSong!.songId, asRadio: false, callback: { result, error in
+        restartingSong = true
+        self.playSong {
             self.pauseSong()
-        })
+            self.restartingSong = false
+        }
     }
     
-    func playSong() {
-        isPlaying = true
+    func playSong(completionBlock: (() -> ())? = nil) {
         if currentSong!.songId.contains("spotify") {
+            reauthorizeSpotifyIfNeeded()
             spotifyAppRemote.playerAPI?.play(currentSong!.songId, asRadio: false, callback: { result, error in
+                self.isPlaying = true
                 print("playSongplaySong")
 //                print(result)
 //                print(error)
                 print(error)
                 print(error?.localizedDescription)
                 
+                self.spotifyAppRemote.playerAPI?.delegate = self
                 self.spotifyAppRemote.playerAPI?.subscribe(toPlayerState: { result, error in
                     print("subscribeToPlayerState")
                     
-    //                print(result)
-    //                print(error)
+                    print(result)
+                    print(error)
                 })
             })
         } else {
@@ -127,13 +132,14 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     // MARK: - SPTAppRemotePlayerStateDelegate
     
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        if (currentSong != nil) { return }
+        //debugPrint("PREPRE [SPOTIFY] Track name: %@", playerState.track.name)
+        if (currentSong == nil || restartingSong) { return }
         debugPrint("[SPOTIFY] Track name: %@", playerState.track.name)
         
         let songId:String = playerState.contextURI.absoluteString
         if songId != currentSong!.songId {
             print("SONG DID END")
-            songDidEnd()
+            restartSong()
         }
     }
     
@@ -143,16 +149,17 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
         // TODO: Instead of simply replaying, go back to previous playBackPosition
         
         // If a song was played while outisde our app, when user comes back, reset to our song
+        spotifyAppRemote.playerAPI?.delegate = self
         self.spotifyAppRemote.playerAPI?.getPlayerState({ result, error in
             let playerState = (result as! SPTAppRemotePlayerState)
             let songId:String = playerState.contextURI.absoluteString
             
             if songId != self.currentSong!.songId {
-                self.songDidEnd()
+                self.restartSong()
             } else if !self.needsSpotifyReauthorization {
                 // If while in app Spotify disconnects, user resumes music, reauthorize and play music without pause
                 // TODO: Update playbackHeadPosition according to playerState or go back to prev playbackPosition
-                
+                //self.restartSong()
                 self.pauseSong()
             }
         })

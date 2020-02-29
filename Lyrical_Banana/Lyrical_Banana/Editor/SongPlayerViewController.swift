@@ -105,5 +105,4 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
         playButton.setImage(UIImage(named: "Pause")?.withRenderingMode(.alwaysOriginal), for: .normal)
         playButton.setImage(UIImage(named: "Pause")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
     }
-
 }

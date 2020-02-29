@@ -26,5 +26,6 @@ class EditorViewController: UIViewController {
     
     @objc private func editorDidAppear(notification: NSNotification) {
         //self.selectedSong = notification.userInfo?["selectedSong"] as? SearchSongResult
+        //MusicPlayerManager.shared.restartSong()
     }
 }
