@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -508,7 +508,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blessings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3J-Mm-crN">
-                                <rect key="frame" x="75" y="58" width="300" height="24"/>
+                                <rect key="frame" x="75" y="73" width="300" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="DoI-xu-9Sw"/>
                                 </constraints>
@@ -517,7 +517,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chance — Coloring Book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoY-dl-AEr">
-                                <rect key="frame" x="100" y="82" width="250" height="24"/>
+                                <rect key="frame" x="100" y="97" width="250" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="G9J-V4-vPV"/>
                                 </constraints>
@@ -546,19 +546,67 @@
                                     <action selector="pressedSpotifyDisconnectedAlert:" destination="3Vx-UD-DlE" eventType="touchUpInside" id="r8i-cY-HNq"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8u-Rx-rpi">
+                                <rect key="frame" x="40" y="45" width="370" height="3"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="ynG-yk-reK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:36" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ta-CQ-742">
+                                <rect key="frame" x="40" y="56" width="26.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:59" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3E-d5-8wM">
+                                <rect key="frame" x="383.5" y="56" width="26.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYJ-v5-08y">
+                                <rect key="frame" x="40" y="42" width="9" height="9"/>
+                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="9" id="hgR-tq-Qt2"/>
+                                    <constraint firstAttribute="width" secondItem="GYJ-v5-08y" secondAttribute="height" multiplier="1:1" id="j6a-R1-Pit"/>
+                                    <constraint firstAttribute="width" constant="9" id="k2g-3j-bEz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="GYJ-v5-08y" firstAttribute="leading" secondItem="ytx-Dn-FMV" secondAttribute="leading" constant="40" id="25S-Nt-njV"/>
                             <constraint firstItem="UoY-dl-AEr" firstAttribute="top" secondItem="g3J-Mm-crN" secondAttribute="bottom" id="9e7-hM-SgP"/>
+                            <constraint firstItem="k8u-Rx-rpi" firstAttribute="leading" secondItem="wkD-8p-76S" secondAttribute="leading" constant="40" id="Ecw-bo-GnJ"/>
+                            <constraint firstAttribute="trailing" secondItem="k8u-Rx-rpi" secondAttribute="trailing" constant="40" id="J00-5v-xF5"/>
                             <constraint firstItem="1kg-5d-9A7" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="KZp-xE-xGF"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Be0-94-C9X" secondAttribute="bottom" constant="50" id="NWJ-1w-lci"/>
                             <constraint firstAttribute="bottomMargin" secondItem="GZX-Fo-fnf" secondAttribute="bottom" constant="50" id="Of5-Su-5TY"/>
-                            <constraint firstItem="Be0-94-C9X" firstAttribute="top" secondItem="UoY-dl-AEr" secondAttribute="bottom" constant="35" id="RLN-MG-2kA"/>
+                            <constraint firstItem="Be0-94-C9X" firstAttribute="top" secondItem="UoY-dl-AEr" secondAttribute="bottom" constant="20" id="RLN-MG-2kA"/>
+                            <constraint firstItem="5ta-CQ-742" firstAttribute="top" secondItem="k8u-Rx-rpi" secondAttribute="bottom" constant="8" id="Xo5-CK-CEk"/>
                             <constraint firstItem="g3J-Mm-crN" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="YSF-9y-JTM"/>
+                            <constraint firstItem="g3J-Mm-crN" firstAttribute="top" secondItem="k8u-Rx-rpi" secondAttribute="bottom" constant="25" id="Zdi-6Q-dWR"/>
                             <constraint firstItem="UoY-dl-AEr" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="auP-gt-3H3"/>
+                            <constraint firstItem="k3E-d5-8wM" firstAttribute="top" secondItem="k8u-Rx-rpi" secondAttribute="bottom" constant="8" id="bfW-FG-9jU"/>
                             <constraint firstItem="GZX-Fo-fnf" firstAttribute="leading" secondItem="Be0-94-C9X" secondAttribute="trailing" constant="10" id="ceq-fl-Jd4"/>
+                            <constraint firstItem="k8u-Rx-rpi" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="dTX-GT-dJE"/>
+                            <constraint firstItem="5ta-CQ-742" firstAttribute="leading" secondItem="ytx-Dn-FMV" secondAttribute="leading" constant="40" id="ebA-Wd-gvs"/>
                             <constraint firstItem="Be0-94-C9X" firstAttribute="centerX" secondItem="wkD-8p-76S" secondAttribute="centerX" id="fIt-Sa-8Ph"/>
+                            <constraint firstItem="g3J-Mm-crN" firstAttribute="top" secondItem="GYJ-v5-08y" secondAttribute="bottom" constant="22" id="fji-go-ZPr"/>
                             <constraint firstItem="Be0-94-C9X" firstAttribute="leading" secondItem="BeJ-er-EPb" secondAttribute="trailing" constant="10" id="jP0-Zk-qRb"/>
+                            <constraint firstItem="ytx-Dn-FMV" firstAttribute="trailing" secondItem="k3E-d5-8wM" secondAttribute="trailing" constant="40" id="t6A-ze-jvD"/>
                             <constraint firstAttribute="bottomMargin" secondItem="BeJ-er-EPb" secondAttribute="bottom" constant="50" id="xdm-Hx-Pwr"/>
                             <constraint firstAttribute="bottom" secondItem="1kg-5d-9A7" secondAttribute="bottom" constant="20" id="z0C-6l-8aq"/>
                         </constraints>
@@ -567,14 +615,21 @@
                     <size key="freeformSize" width="450" height="300"/>
                     <connections>
                         <outlet property="artistNameLabel" destination="UoY-dl-AEr" id="ifx-h6-Uro"/>
+                        <outlet property="backwardButton" destination="BeJ-er-EPb" id="INV-rT-oc2"/>
+                        <outlet property="currentTimeLabel" destination="5ta-CQ-742" id="15q-OF-5dZ"/>
+                        <outlet property="forwardButton" destination="GZX-Fo-fnf" id="bSr-aX-XEn"/>
+                        <outlet property="movingTimeIndicatorView" destination="GYJ-v5-08y" id="nOK-Np-6Hh"/>
+                        <outlet property="movingTimeIndicatorViewLeftConstraint" destination="25S-Nt-njV" id="YyX-Bw-i32"/>
                         <outlet property="playButton" destination="Be0-94-C9X" id="yBX-Ou-wcP"/>
                         <outlet property="songNameLabel" destination="g3J-Mm-crN" id="ZYs-rh-PoL"/>
                         <outlet property="spotifyDisconnectedAlertButton" destination="1kg-5d-9A7" id="ByU-Iu-dnT"/>
+                        <outlet property="timeBarView" destination="k8u-Rx-rpi" id="SfM-dB-fjQ"/>
+                        <outlet property="totalTimeLabel" destination="k3E-d5-8wM" id="ViO-5w-fYL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIf-cf-Tph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="382"/>
+            <point key="canvasLocation" x="1850.7246376811595" y="381.69642857142856"/>
         </scene>
     </scenes>
     <resources>

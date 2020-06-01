@@ -16,4 +16,6 @@ class SearchSongResult: NSObject {
     var songId: String = ""
     var albumImageLink: String = ""
     var durationMilliSec: Int = -1
+    var durationSec: Int = -1
+    var durationStr: String = ""
 }

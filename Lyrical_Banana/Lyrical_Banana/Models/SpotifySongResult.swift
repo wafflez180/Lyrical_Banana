@@ -15,6 +15,8 @@ class SpotifySongResult: SearchSongResult {
         self.name = json["name"].stringValue
         self.songId = json["uri"].stringValue
         self.durationMilliSec = json["duration_ms"].intValue
+        self.durationSec = json["duration_ms"].intValue / 1000
+        self.durationStr = stringFromMilliSec(ms: json["duration_ms"].intValue)
         self.albumImageLink = json["album"]["images"].array![2]["url"].stringValue
         
         for artistJSON in json["artists"].array! {
@@ -26,5 +28,13 @@ class SpotifySongResult: SearchSongResult {
                 artistLabelText += ", "
             }
         }
+    }
+    
+    func stringFromMilliSec(ms: Int) -> String {
+        let time = NSInteger(ms / 1000)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+
+        return String(format: "%0.2d:%0.2d",minutes,seconds)
     }
 }

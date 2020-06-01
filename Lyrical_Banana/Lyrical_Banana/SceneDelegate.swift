@@ -80,7 +80,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
             
             if !MusicPlayerManager.shared.recievedFirstSpotifyAuth {
                 MusicPlayerManager.shared.recievedFirstSpotifyAuth = true
-                MusicPlayerManager.shared.spotifyAppRemote.playerAPI?.delegate = MusicPlayerManager.shared
                 MusicPlayerManager.shared.spotifyAppRemote.playerAPI?.pause()
                 NotificationCenter.default.post(name: Notification.Name("recievedFirstSpotifyAuth"), object: nil, userInfo: nil)
             }
