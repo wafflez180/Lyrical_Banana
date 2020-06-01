@@ -19,7 +19,7 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     let spotifyAppRemote = (UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate).appRemote
     var spotifyAccessToken = ""
     
-    var authorizedSpotify = false
+    var recievedFirstSpotifyAuth = false
     var needsSpotifyReauthorization = false
     
     var currentSong: SearchSongResult?
@@ -27,7 +27,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     var restartingSong:Bool = false
     
     var songPlayerViewControlDelegate: SongPlayerViewControlDelegate?
-
+    var checkSelectedSongIsPlayingTimer:Timer? = nil
+    
     // MARK: - MusicPlayerManager
         
     func restartSong() {
@@ -39,7 +40,32 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
         }
     }
     
+    func startSelectedSongChecker() {
+        checkSelectedSongIsPlayingTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(checkSelectedSongIsPlaying), userInfo: nil, repeats: true)
+    }
+
+    // User could change the song via Spotify on their web or other device
+    // This function checks if their originally selected song is still playing
+    // Otherwise if another song is playing, switch to original
+    @objc func checkSelectedSongIsPlaying()
+    {
+        if isPlaying {
+            spotifyAppRemote.playerAPI?.delegate = self
+            self.spotifyAppRemote.playerAPI?.getPlayerState({ result, error in
+                let playerState = (result as! SPTAppRemotePlayerState)
+                let songId:String = playerState.contextURI.absoluteString
+                
+                if songId != self.currentSong!.songId {
+                    self.restartSong()
+                }
+            })
+        }
+    }
+    
     func playSong(completionBlock: (() -> ())? = nil) {
+        if checkSelectedSongIsPlayingTimer == nil {
+            startSpotifySongChecker()
+        }
         if currentSong!.songId.contains("spotify") {
             reauthorizeSpotifyIfNeeded()
             spotifyAppRemote.playerAPI?.play(currentSong!.songId, asRadio: false, callback: { result, error in
@@ -64,6 +90,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
         
         songPlayerViewControlDelegate?.didPlaySong()
     }
+    
+    // MARK: - User Controls
     
     func pauseSong(){
         reauthorizeSpotifyIfNeeded()
@@ -131,6 +159,8 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     
     // MARK: - SPTAppRemotePlayerStateDelegate
     
+    
+    // Maybe remove this once you have the scrubbing implemented
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         //debugPrint("PREPRE [SPOTIFY] Track name: %@", playerState.track.name)
         if (currentSong == nil || restartingSong) { return }
@@ -141,28 +171,6 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
             print("SONG DID END")
             restartSong()
         }
-    }
-    
-    // MARK: - Spotify General
-        
-    func appDidExitAndReconnectToSpotify() {
-        // TODO: Instead of simply replaying, go back to previous playBackPosition
-        
-        // If a song was played while outisde our app, when user comes back, reset to our song
-        spotifyAppRemote.playerAPI?.delegate = self
-        self.spotifyAppRemote.playerAPI?.getPlayerState({ result, error in
-            let playerState = (result as! SPTAppRemotePlayerState)
-            let songId:String = playerState.contextURI.absoluteString
-            
-            if songId != self.currentSong!.songId {
-                self.restartSong()
-            } else if !self.needsSpotifyReauthorization {
-                // If while in app Spotify disconnects, user resumes music, reauthorize and play music without pause
-                // TODO: Update playbackHeadPosition according to playerState or go back to prev playbackPosition
-                //self.restartSong()
-                self.pauseSong()
-            }
-        })
     }
     
     // MARK: - Spotify Authorization
@@ -181,23 +189,7 @@ class MusicPlayerManager: NSObject, SPTAppRemotePlayerStateDelegate {
     func failedSpotifyAuthorization(error: String) {
         print(error)
     }
-    
-    func didAuthorizeSpotify() {
-        // Should I keep the playerStateDidChange method and delegate in MusicPlayer or SceneDelegate?
-        if authorizedSpotify {
-            // iOS Limitation, after awhile if song is paused, iOS will disconnect spotify
-            // https://github.com/spotify/ios-sdk/issues/140
-            // The app has reauthorized Spotify due to disconnection
-            appDidExitAndReconnectToSpotify()
-        } else {
-            authorizedSpotify = true
-            spotifyAppRemote.playerAPI?.delegate = self
-            spotifyAppRemote.playerAPI?.pause()
-            
-            NotificationCenter.default.post(name: Notification.Name("authorizedSpotify"), object: nil, userInfo: nil)
-        }
-    }
-    
+        
     // MARK: - App States
 
     func appWillResignActive(){

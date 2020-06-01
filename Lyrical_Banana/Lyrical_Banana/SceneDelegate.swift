@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
             isFirstConnection = false
             MusicPlayerManager.shared.pauseSong()
         } else {
-            MusicPlayerManager.shared.appDidExitAndReconnectToSpotify()
+            //MusicPlayerManager.shared.appDidExitAndReconnectToSpotify()
             NotificationCenter.default.post(name: Notification.Name("spotifyDidReconnect"), object: nil, userInfo: nil)
         }
     }
@@ -66,7 +66,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
       MusicPlayerManager.shared.appDidBecomeActive()
     }
     
-    // Deeplink to the Spotify App
+    // Deeplink and request authorization to the Spotify App
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else {
             return
@@ -74,10 +74,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
 
         let parameters = appRemote.authorizationParameters(from: url);
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+            // Successfully authorized from Spotify
             appRemote.connectionParameters.accessToken = access_token
             MusicPlayerManager.shared.spotifyAccessToken = access_token
-            MusicPlayerManager.shared.didAuthorizeSpotify()
+            
+            if !MusicPlayerManager.shared.recievedFirstSpotifyAuth {
+                MusicPlayerManager.shared.recievedFirstSpotifyAuth = true
+                MusicPlayerManager.shared.spotifyAppRemote.playerAPI?.delegate = MusicPlayerManager.shared
+                MusicPlayerManager.shared.spotifyAppRemote.playerAPI?.pause()
+                NotificationCenter.default.post(name: Notification.Name("recievedFirstSpotifyAuth"), object: nil, userInfo: nil)
+            }
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+            // Failed authorization from Spotify
             MusicPlayerManager.shared.failedSpotifyAuthorization(error: error_description)
         }
     }

@@ -103,7 +103,7 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
                 }
 
             }
-        } else if MusicPlayerManager.shared.authorizedSpotify {
+        } else if MusicPlayerManager.shared.recievedFirstSpotifyAuth {
             AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":MusicPlayerManager.shared.spotifyAccessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
                 let jsonResponse = JSON.init(response.value!)
 

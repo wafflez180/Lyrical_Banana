@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         self.lyricalBananaLabel.isHidden = true
         self.bananaImageView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(authorizedSpotify), name: Notification.Name("authorizedSpotify"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(recievedFirstSpotifyAuth), name: Notification.Name("recievedFirstSpotifyAuth"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(authorizedAppleMusic), name: Notification.Name("authorizedAppleMusic"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(launchTransitionDidComplete), name: Notification.Name("launchTransitionComplete"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didSelectSong), name: Notification.Name("didSelectSong"), object: nil)
@@ -123,7 +123,7 @@ class MainViewController: UIViewController {
 //        })
     }
 
-    @objc private func authorizedSpotify(notification: NSNotification) {
+    @objc private func recievedFirstSpotifyAuth(notification: NSNotification) {
         musicServiceToSelectSongTransition()
     }
     
