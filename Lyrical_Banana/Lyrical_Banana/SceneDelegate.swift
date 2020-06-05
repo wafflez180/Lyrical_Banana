@@ -34,9 +34,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
         print("[SPOTIFY] connected")
         if isFirstConnection {
             isFirstConnection = false
-            MusicPlayerManager.shared.pauseSong()
+            appRemote.playerAPI?.pause()
         } else {
-            //MusicPlayerManager.shared.appDidExitAndReconnectToSpotify()
+            if MusicPlayerManager.shared.didChangeSongTimeWhileDisconnected {
+                MusicPlayerManager.shared.pauseSong()
+                MusicPlayerManager.shared.seekTo(newSongTime: MusicPlayerManager.shared.currentSongTimeSec) { _ in
+                    MusicPlayerManager.shared.resumeSong()
+                    MusicPlayerManager.shared.didChangeSongTimeWhileDisconnected = false
+                }
+            }
+            
+            MusicPlayerManager.shared.restartingSong = false
+            MusicPlayerManager.shared.isSeeking = false
+            MusicPlayerManager.shared.isRequestingToPlay = false
+            MusicPlayerManager.shared.isPausing = false
+            MusicPlayerManager.shared.isResuming = false
+
+            // Needed when appWillResignActive (user exits app) and then user comes back to the app
+            appRemote.playerAPI?.getPlayerState({ result, error in
+                if let playerState = result as? SPTAppRemotePlayerState {
+                    MusicPlayerManager.shared.isPlaying = !playerState.isPaused
+                    
+                    if playerState.isPaused {
+                        MusicPlayerManager.shared.songPlayerViewControlDelegate?.didPauseSong()
+                    } else if !playerState.isPaused {
+                        MusicPlayerManager.shared.songPlayerViewControlDelegate?.didPlayOrResumeSong()
+                    }
+                }
+            })
             NotificationCenter.default.post(name: Notification.Name("spotifyDidReconnect"), object: nil, userInfo: nil)
         }
     }
@@ -59,11 +84,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
     // MARK: - Scene Delegate
 
     func sceneWillResignActive(_ scene: UIScene) {
-      MusicPlayerManager.shared.appWillResignActive()
+        MusicPlayerManager.shared.appWillResignActive()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-      MusicPlayerManager.shared.appDidBecomeActive()
+        MusicPlayerManager.shared.appDidBecomeActive()
     }
     
     // Deeplink and request authorization to the Spotify App

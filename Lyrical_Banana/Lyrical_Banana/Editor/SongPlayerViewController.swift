@@ -9,7 +9,7 @@
 import UIKit
 import PMSuperButton
 
-class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate {
+class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate, SongTimeBarMovingIndicatorDelegate {
 
     @IBOutlet var spotifyDisconnectedAlertButton: PMSuperButton!
 
@@ -19,17 +19,8 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
     @IBOutlet var backwardButton: UIButton!
     @IBOutlet var forwardButton: UIButton!
     
-    // Time Bar
-    @IBOutlet var currentTimeLabel: UILabel!
-    @IBOutlet var totalTimeLabel: UILabel!
-    @IBOutlet var timeBarView: UIView!
-    @IBOutlet var movingTimeIndicatorView: UIView!
-    @IBOutlet var movingTimeIndicatorViewLeftConstraint: NSLayoutConstraint!
+    @IBOutlet var songTimeBarView: SongTimeBarView!
     
-    var initialMovingTimeIndicatorViewLeftConstraint:CGFloat!
-    var movingTimeIndicatorTimer:Timer?
-    var incrementEverySecAmount:CGFloat = 0.0
-
     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         
     // MARK: - UIViewController
@@ -37,72 +28,30 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spotifyDisconnectedAlertButton.isHidden = true
-        
         MusicPlayerManager.shared.songPlayerViewControlDelegate = self
-        initialMovingTimeIndicatorViewLeftConstraint = movingTimeIndicatorViewLeftConstraint.constant
 
-        NotificationCenter.default.addObserver(self, selector: #selector(editorDidAppear), name: Notification.Name("editorDidAppear"), object: nil)
+        spotifyDisconnectedAlertButton.isHidden = true
+        self.songNameLabel.text = ""
+        self.artistNameLabel.text = ""
+
+        songTimeBarView.viewDidLoad()
+        songTimeBarView.movingIndicatorDelegate = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(didHideSelectSongView), name: Notification.Name("didHideSelectSongView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spotifyDidDisconnect), name: Notification.Name("spotifyDidDisconnecd"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spotifyDidReconnect), name: Notification.Name("spotifyDidReconnect"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didChangeSongTime), name: Notification.Name("didChangeSongTime"), object: nil)
     }
     
-
     // MARK: - SongPlayerViewController
     
-    @objc private func editorDidAppear(notification: NSNotification) {
-        setupSongLabels()
-        MusicPlayerManager.shared.playSong()
-        beginIncrementingTime()
-    }
-    
-    func setupSongLabels() {
+    @objc private func didHideSelectSongView() {
         if let selectedSong = MusicPlayerManager.shared.currentSong {
             self.songNameLabel.text = selectedSong.name
             self.artistNameLabel.text = selectedSong.artistLabelText
-            self.totalTimeLabel.text = selectedSong.durationStr
-            self.currentTimeLabel.text = "00:00"
-            
-            self.incrementEverySecAmount = ((self.timeBarView.frame.width - (self.movingTimeIndicatorView.frame.width/2)) / (CGFloat(selectedSong.durationMilliSec) / 1000.0))
-        }
-    }
-    
-    // MARK: - Song Time Indicator
-    
-    func beginIncrementingTime() {
-        movingTimeIndicatorTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(incrementTimeAndUpdateViews), userInfo: nil, repeats: true)
-    }
-    
-    @objc func incrementTimeAndUpdateViews() {
-        let songLengthSec = MusicPlayerManager.shared.currentSong!.durationSec
-        if MusicPlayerManager.shared.isPlaying && MusicPlayerManager.shared.currentSongTimeSec < songLengthSec {
-            MusicPlayerManager.shared.currentSongTimeSec += 1
-            
-            currentTimeLabel.text = stringFromSec(seconds: MusicPlayerManager.shared.currentSongTimeSec)
-            
-            self.movingTimeIndicatorViewLeftConstraint.constant = (CGFloat(MusicPlayerManager.shared.currentSongTimeSec) * self.incrementEverySecAmount) + self.initialMovingTimeIndicatorViewLeftConstraint
-            UIView.animate(withDuration: TimeInterval(incrementEverySecAmount), delay: 0.0, options: .curveLinear, animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        } else if MusicPlayerManager.shared.currentSongTimeSec == songLengthSec {
-            MusicPlayerManager.shared.restartSong()
-        }
-    }
-    
-    func stringFromSec(seconds: Int) -> String {
-        let time = NSInteger(seconds)
 
-        let seconds = time % 60
-        let minutes = (time / 60) % 60
-        
-        return String(format: "%0.2d:%0.2d",minutes,seconds)
-    }
-    
-    @objc private func didChangeSongTime(notification: NSNotification) {
-        self.movingTimeIndicatorViewLeftConstraint.constant = (CGFloat(MusicPlayerManager.shared.currentSongTimeSec) * self.incrementEverySecAmount) + self.initialMovingTimeIndicatorViewLeftConstraint
-        self.movingTimeIndicatorView.layoutIfNeeded()
-        currentTimeLabel.text = stringFromSec(seconds: MusicPlayerManager.shared.currentSongTimeSec)
+            songTimeBarView.didHideSelectSongView()
+            MusicPlayerManager.shared.playSong()
+        }
     }
             
     // MARK: - Actions
@@ -135,15 +84,33 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
     }
     
     // MARK: - SongPlayerViewControlDelegate
-    
+        
     func didPauseSong() {
-        playButton.setImage(UIImage(named: "Play")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        playButton.setImage(UIImage(named: "Play")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
+        if !songTimeBarView.movedTimeIndicator && !MusicPlayerManager.shared.isSeeking {
+            playButton.setImage(UIImage(named: "Play")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            playButton.setImage(UIImage(named: "Play")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
+        }
     }
     
-    func didPlaySong() {
+    func didPlayOrResumeSong() {
         playButton.setImage(UIImage(named: "Pause")?.withRenderingMode(.alwaysOriginal), for: .normal)
         playButton.setImage(UIImage(named: "Pause")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
+    }
+    
+    // MARK: - SongTimeBarMovingIndicatorDelegate
+
+    func didBeginSeeking() {
+        backwardButton.isEnabled = false
+        forwardButton.isEnabled = false
+        playButton.isEnabled = false
+    }
+    
+    func didEndSeeking() {
+        if MusicPlayerManager.shared.spotifyAppRemote.isConnected {
+            backwardButton.isEnabled = true
+            forwardButton.isEnabled = true
+        }
+        playButton.isEnabled = true
     }
     
     // MARK: - Spotify
@@ -153,6 +120,7 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
         spotifyDisconnectedAlertButton.imageView?.alpha = 0.0
         backwardButton.isEnabled = false
         forwardButton.isEnabled = false
+        didPauseSong()
 
         UIView.animate(withDuration: 0.2) {
             self.spotifyDisconnectedAlertButton.imageView?.alpha = 1.0
@@ -162,7 +130,7 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate 
     @objc private func spotifyDidReconnect(notification: NSNotification) {
         backwardButton.isEnabled = true
         forwardButton.isEnabled = true
-
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.spotifyDisconnectedAlertButton.imageView?.alpha = 0.0
         }) { finished in

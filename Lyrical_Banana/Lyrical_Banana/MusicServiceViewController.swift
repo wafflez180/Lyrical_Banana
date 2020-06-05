@@ -33,10 +33,16 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
             .action: SKCloudServiceSetupAction.subscribe,
             .messageIdentifier: SKCloudServiceSetupMessageIdentifier.playMusic
         ]
-            
+            // TODO: Add loading indicator
         vc.load(options: options) { success, error in
             if success {
                 self.present(vc, animated: true)
+            } else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -44,6 +50,7 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
     // MARK: - Actions
 
     @IBAction func pressedSpotifyButton(_ sender: Any) {
+        // TODO: Check what happens when not connected to internet, show alert when not connected
         MusicPlayerManager.shared.requestSpotifyAuthorization()
     }
     

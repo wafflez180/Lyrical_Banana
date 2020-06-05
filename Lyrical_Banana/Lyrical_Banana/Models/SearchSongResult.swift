@@ -18,4 +18,8 @@ class SearchSongResult: NSObject {
     var durationMilliSec: Int = -1
     var durationSec: Int = -1
     var durationStr: String = ""
+    
+    var isSpotifySong: Bool {
+        return songId.contains("spotify")
+    }
 }

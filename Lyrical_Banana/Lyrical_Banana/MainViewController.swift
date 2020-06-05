@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
         }) { completed in
             self.selectSongView.isHidden = true
             
-            NotificationCenter.default.post(name: Notification.Name("editorDidAppear"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: Notification.Name("didHideSelectSongView"), object: nil, userInfo: nil)
        }
 
         self.editorContainerView.isHidden = false
