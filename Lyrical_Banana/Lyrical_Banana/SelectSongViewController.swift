@@ -56,6 +56,11 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
         let selectedSongResult = songList[indexPath.row]
         MusicPlayerManager.shared.currentSong = selectedSongResult
         
+        if selectedSongResult.isAppleMusicSong {
+            MusicPlayerManager.shared.appleMusicPlayer.setQueue(with: MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [selectedSongResult.songId]))
+            MusicPlayerManager.shared.appleMusicPlayer.prepareToPlay()
+        }
+        
         self.searchTextField.resignFirstResponder()
         NotificationCenter.default.post(name: Notification.Name("didSelectSong"), object: nil, userInfo: nil)
     }

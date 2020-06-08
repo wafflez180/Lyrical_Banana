@@ -39,7 +39,7 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
                 self.present(vc, animated: true)
             } else {
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: "Apple Music Error", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
@@ -59,37 +59,38 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
            (status: SKCloudServiceAuthorizationStatus) in
                switch(status) {
                case .notDetermined:
-                _ = self.navigationController?.popViewController(animated: true)
-                let alert = UIAlertController(title: "Not Determined", message: "Unfortunately Apple Music responded saying your subscription's validity is not determined.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                    _ = self.navigationController?.popViewController(animated: true)
+                    let alert = UIAlertController(title: "Not Determined", message: "Unfortunately Apple Music responded saying your subscription's validity is not determined.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
 
                case .denied:
-                _ = self.navigationController?.popViewController(animated: true)
-                let alert = UIAlertController(title: "Denied", message: "Unfortunately Apple Music responded saying your subscription's validity is denied.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    _ = self.navigationController?.popViewController(animated: true)
+                    let alert = UIAlertController(title: "Denied", message: "Unfortunately Apple Music responded saying your subscription's validity is denied.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+
                case .restricted:
-                _ = self.navigationController?.popViewController(animated: true)
-                let alert = UIAlertController(title: "Restricted", message: "Unfortunately Apple Music responded saying your subscription's validity is restricted.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    _ = self.navigationController?.popViewController(animated: true)
+                    let alert = UIAlertController(title: "Restricted", message: "Unfortunately Apple Music responded saying your subscription's validity is restricted.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
 
                case .authorized:
-                print(status)
-                print("---------------")
-                let developerToken = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkZHSElKNjc4OTAifQ.eyJpYXQiOjE1ODExMjMwNTgsImV4cCI6MTU5NjY3NTA1OCwiaXNzIjoiQUJDREUxMjM0NSJ9.l_0hFFaDnntN9iUUXTnlP2xbTpW0pFj3YpLS2ZpQ593VpNIivnS6xjtgHvQITo7081xvy7yYOOLWDWhlJapdEw"
-                        SKCloudServiceController().requestCapabilities { capabilities, error in
-                            print(capabilities)
-                            print(error)
-                            if capabilities.contains(.musicCatalogPlayback) {
-
-                                // User has Apple Music account
-                                NotificationCenter.default.post(name: Notification.Name("authorizedAppleMusic"), object: nil)
-                            } else if capabilities.contains(.musicCatalogSubscriptionEligible) {
-                                // User can sign up to Apple Music
-                                print("YEs")
-                                self.showAppleMusicSignup()
-                            }
-                }
+                    print(status)
+                    print("---------------")
+                    let developerToken = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkZHSElKNjc4OTAifQ.eyJpYXQiOjE1ODExMjMwNTgsImV4cCI6MTU5NjY3NTA1OCwiaXNzIjoiQUJDREUxMjM0NSJ9.l_0hFFaDnntN9iUUXTnlP2xbTpW0pFj3YpLS2ZpQ593VpNIivnS6xjtgHvQITo7081xvy7yYOOLWDWhlJapdEw"
+                    SKCloudServiceController().requestCapabilities { capabilities, error in
+                        print(capabilities)
+                        print(error)
+                        if capabilities.contains(.musicCatalogPlayback) {
+                            // User has Apple Music account
+                            NotificationCenter.default.post(name: Notification.Name("authorizedAppleMusic"), object: nil)
+                        } else if capabilities.contains(.musicCatalogSubscriptionEligible) {
+                            // User can sign up to Apple Music
+                            self.showAppleMusicSignup()
+                        }
+                    }
             }
         })
     }

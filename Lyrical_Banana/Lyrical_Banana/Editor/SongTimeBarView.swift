@@ -51,7 +51,9 @@ class SongTimeBarView: UIView {
         self.totalTimeLabel.text = selectedSong.durationStr
         self.amountToIncrementEverySec = ((self.timeBarView.frame.width - (self.movingTimeIndicatorView.frame.width/2)) / (CGFloat(selectedSong.durationMilliSec) / 1000.0))
         
-        startIncrementingTimer()
+        if selectedSong.isSpotifySong {
+            startIncrementingTimer()
+        }
     }
     
     // MARK: - Moving Time Indicator Interactions
@@ -128,7 +130,7 @@ class SongTimeBarView: UIView {
     func seekToNewSongTime() {
         let newSongTime = Int(movingTimeIndicatorViewLeftConstraint.constant / amountToIncrementEverySec)
         
-        if MusicPlayerManager.shared.spotifyAppRemote.isConnected {
+        if MusicPlayerManager.shared.spotifyAppRemote.isConnected || MusicPlayerManager.shared.currentSong!.isAppleMusicSong {
             MusicPlayerManager.shared.seekTo(newSongTime: newSongTime) { success in
                 self.movingIndicatorDelegate?.didEndSeeking()
                 if success {
@@ -176,9 +178,18 @@ class SongTimeBarView: UIView {
         }
     }
 
-    @objc private func didChangeSongTime() {
+    @objc private func didChangeSongTime(notification: NSNotification) {
         self.movingTimeIndicatorViewLeftConstraint.constant = (CGFloat(MusicPlayerManager.shared.currentSongTimeSec) * self.amountToIncrementEverySec) + self.initialMovingTimeIndicatorViewLeftConstraint
-        self.movingTimeIndicatorView.layoutIfNeeded()
+        
+        if let animate = notification.userInfo?["animate"] as? Bool {
+            if animate && MusicPlayerManager.shared.isPlaying {
+                UIView.animate(withDuration: TimeInterval(amountToIncrementEverySec), delay: 0.0, options: .curveLinear, animations: {
+                    self.superview?.layoutIfNeeded()
+                }, completion: nil)
+            } else {
+                self.movingTimeIndicatorView.layoutIfNeeded()
+            }
+        }
         currentTimeLabel.text = stringFromSec(seconds: MusicPlayerManager.shared.currentSongTimeSec)
     }
 

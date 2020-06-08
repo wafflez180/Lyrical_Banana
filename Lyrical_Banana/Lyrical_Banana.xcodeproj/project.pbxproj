@@ -16,12 +16,14 @@
 		CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */; };
 		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
 		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
+		CA54F58D248EC8CE0021C227 /* MusicServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA54F58C248EC8CE0021C227 /* MusicServiceManager.swift */; };
 		CA5DC29124897C2E0069720F /* SongTimeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5DC29024897C2E0069720F /* SongTimeBarView.swift */; };
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
 		CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */; };
 		CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF75223E4E08500DAB094 /* MainViewController.swift */; };
 		CA8BF75623E4E08500DAB094 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75423E4E08500DAB094 /* Main.storyboard */; };
 		CA8BF75823E4E08800DAB094 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8BF75723E4E08800DAB094 /* Assets.xcassets */; };
+		CA970A0B248B02080089611A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA970A0A248B02080089611A /* MediaPlayer.framework */; };
 		CABF4ABB23EF1F5B002E1671 /* AppleMusicSongResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4ABA23EF1F5B002E1671 /* AppleMusicSongResult.swift */; };
 		CABF4ABD23EF20EE002E1671 /* SearchSongResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4ABC23EF20EE002E1671 /* SearchSongResult.swift */; };
 		CABF4ABF23EF2C69002E1671 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4ABE23EF2C69002E1671 /* ImageSearchViewController.swift */; };
@@ -48,6 +50,7 @@
 		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lyrical_Banana-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA54F58C248EC8CE0021C227 /* MusicServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicServiceManager.swift; sourceTree = "<group>"; };
 		CA5DC29024897C2E0069720F /* SongTimeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTimeBarView.swift; sourceTree = "<group>"; };
 		CA8BF74B23E4E08500DAB094 /* Lyrical Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lyrical Banana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		CA8BF75523E4E08500DAB094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA8BF75723E4E08800DAB094 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA8BF75C23E4E08800DAB094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA970A0A248B02080089611A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		CABF4ABA23EF1F5B002E1671 /* AppleMusicSongResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicSongResult.swift; sourceTree = "<group>"; };
 		CABF4ABC23EF20EE002E1671 /* SearchSongResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongResult.swift; sourceTree = "<group>"; };
 		CABF4ABE23EF2C69002E1671 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */,
+				CA970A0B248B02080089611A /* MediaPlayer.framework in Frameworks */,
 				D9FBEDAB02D0F6F83BE71E65 /* Pods_Lyrical_Banana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +96,7 @@
 		86AE3BBA6AAFF9A84EF5A258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA970A0A248B02080089611A /* MediaPlayer.framework */,
 				CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */,
 				53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */,
 			);
@@ -149,6 +155,7 @@
 				CA8BF75423E4E08500DAB094 /* Main.storyboard */,
 				CA8BF75223E4E08500DAB094 /* MainViewController.swift */,
 				CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */,
+				CA54F58C248EC8CE0021C227 /* MusicServiceManager.swift */,
 				CABF4AC423EF2CAA002E1671 /* Editor */,
 				CA0BB0A423E760300093F5CE /* MusicServiceViewController.swift */,
 				CA0BB0A623E76F780093F5CE /* SelectSongViewController.swift */,
@@ -312,6 +319,7 @@
 				CABF4AC323EF2CA4002E1671 /* SongPlayerViewController.swift in Sources */,
 				CABF4ABD23EF20EE002E1671 /* SearchSongResult.swift in Sources */,
 				CA8BF75123E4E08500DAB094 /* SceneDelegate.swift in Sources */,
+				CA54F58D248EC8CE0021C227 /* MusicServiceManager.swift in Sources */,
 				CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 protocol SongPlayerViewControlDelegate {
     func didPauseSong()
@@ -19,6 +20,8 @@ class MusicPlayerManager: NSObject {
     let spotifyAppRemote = (UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate).appRemote
     var spotifyAccessToken = ""
     var recievedFirstSpotifyAuth = false
+    
+    let appleMusicPlayer: MPMusicPlayerApplicationController = MPMusicPlayerController.applicationQueuePlayer
     
     var currentSong: SearchSongResult?
     var isPlaying: Bool = false
@@ -41,17 +44,24 @@ class MusicPlayerManager: NSObject {
         
     func restartSong() {
         // Restart song and pause at 0:00
-        if !restartingSong {
-            restartingSong = true
-            self.playSong { success in
-                self.restartingSong = false
-                
-                if success {
-                    self.pauseSong() // TODO: Add option to not pause aka repeatedly replay the song
-                    self.currentSongTimeSec = 0
-                    NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: nil)
+        if currentSong!.isSpotifySong {
+            if !restartingSong {
+                restartingSong = true
+                self.playSong { success in
+                    self.restartingSong = false
+                    
+                    if success {
+                        self.pauseSong() // TODO: Add option to not pause aka repeatedly replay the song
+                        self.currentSongTimeSec = 0
+                        NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
+                    }
                 }
             }
+        } else if currentSong!.isAppleMusicSong {
+            self.pauseSong()
+            appleMusicPlayer.skipToBeginning()
+            self.currentSongTimeSec = 0
+            NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
         }
     }
         
@@ -80,7 +90,7 @@ class MusicPlayerManager: NSObject {
                     let playbackPositionSec = playerState.playbackPosition / 1000
                     if abs(self.currentSongTimeSec - playbackPositionSec) > 5 {
                         self.currentSongTimeSec = playbackPositionSec
-                        NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: nil)
+                        NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
                     } else {
                         self.currentSongTimeSec = playbackPositionSec
                     }
@@ -88,6 +98,9 @@ class MusicPlayerManager: NSObject {
                     self.presentErrorAlert(title: "Spotify Song Check Error", error: error)
                 }
             })
+        } else if currentSong!.isAppleMusicSong {
+            currentSongTimeSec = Int(appleMusicPlayer.currentPlaybackTime)
+            NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": true])
         }
     }
     
@@ -114,39 +127,88 @@ class MusicPlayerManager: NSObject {
             })
         } else {
             // TODO: PLAY APPLE MUSIC
+//            MPMusicPlayerController.applicationMusicPlayer.repeatMode = .
+//            MPMusicPlayerController.applicationMusicPlayer.skipToBegginging
+           // MPMusicPlayerController.applicationMusicPlayer.playbackState
+//            appleMusicPlayer.setQueue(with: MPMusicPlayerStoreQueueDescriptor.init(storeIDs: [currentSong!.songId]))
+//            appleMusicPlayer.prepareToPlay { error in
+//                if let error = error { self.presentErrorAlert(title: "Apple Music Play Song Error", error: error) } else {
+            
+//            if
+            // Warning, obserserver may be added twice if the user selects a new song again during editing
+            MusicPlayerManager.shared.appleMusicPlayer.beginGeneratingPlaybackNotifications()
+            NotificationCenter.default.addObserver(self, selector: #selector(appleMusicPlaybackStateDidChange), name: .MPMusicPlayerControllerPlaybackStateDidChange, object: nil)
+
+            self.appleMusicPlayer.play()
+//                }
+//            }
+        }
+    }
+    
+    // MARK: - Apple Music
+    
+    @objc func appleMusicPlaybackStateDidChange(){
+        /*
+        MPMusicPlaybackStateStopped,
+        MPMusicPlaybackStatePlaying,
+        MPMusicPlaybackStatePaused,
+        MPMusicPlaybackStateInterrupted,
+        MPMusicPlaybackStateSeekingForward,
+        MPMusicPlaybackStateSeekingBackward*/
+        let playbackState = appleMusicPlayer.playbackState
+        if playbackState == .playing {
+            isPlaying = true
+            songPlayerViewControlDelegate?.didPlayOrResumeSong()
+        } else if playbackState == .paused || playbackState == .interrupted {
+            isPlaying = false
+            songPlayerViewControlDelegate?.didPauseSong()
+        } else if playbackState == .stopped {
+            restartSong()
         }
     }
     
     // MARK: - User Controls
     
     func pauseSong(){
-        reauthorizeSpotifyIfNeeded()
-        if isPausing || !isPlaying || isResuming || isSeeking { return }
+        if currentSong!.isSpotifySong {
+            reauthorizeSpotifyIfNeeded()
+            if isPausing || !isPlaying || isResuming || isSeeking { return }
 
-        isPausing = true
-        spotifyAppRemote.playerAPI?.pause({ result, error in
-            self.isPausing = false
-            print("Paused Song")
-            if let _ = result {
-                self.isPlaying = false
-                self.songPlayerViewControlDelegate?.didPauseSong()
-            } else if let error = error { self.presentErrorAlert(title: "Spotify Pause Song Error", error: error) }
-        })
+            isPausing = true
+            spotifyAppRemote.playerAPI?.pause({ result, error in
+                self.isPausing = false
+                print("Paused Song")
+                if let _ = result {
+                    self.isPlaying = false
+                    self.songPlayerViewControlDelegate?.didPauseSong()
+                } else if let error = error { self.presentErrorAlert(title: "Spotify Pause Song Error", error: error) }
+            })
+        } else if currentSong!.isAppleMusicSong {
+            appleMusicPlayer.pause()
+            self.isPlaying = false
+            self.songPlayerViewControlDelegate?.didPauseSong()
+        }
     }
     
     func resumeSong(){
-        reauthorizeSpotifyIfNeeded()
-        if isResuming || isPlaying || isPausing || isSeeking { return }
+        if currentSong!.isSpotifySong {
+            reauthorizeSpotifyIfNeeded()
+            if isResuming || isPlaying || isPausing || isSeeking { return }
 
-        isResuming = true
-        spotifyAppRemote.playerAPI?.resume({ result, error in
-            self.isResuming = false
-            print("Resumed Song")
-            if let _ = result {
-                self.isPlaying = true
-                self.songPlayerViewControlDelegate?.didPlayOrResumeSong()
-            } else if let error = error { self.presentErrorAlert(title: "Spotify Resume Song Error", error: error) }
-        })
+            isResuming = true
+            spotifyAppRemote.playerAPI?.resume({ result, error in
+                self.isResuming = false
+                print("Resumed Song")
+                if let _ = result {
+                    self.isPlaying = true
+                    self.songPlayerViewControlDelegate?.didPlayOrResumeSong()
+                } else if let error = error { self.presentErrorAlert(title: "Spotify Resume Song Error", error: error) }
+            })
+        } else if currentSong!.isAppleMusicSong {
+            appleMusicPlayer.play()
+            self.isPlaying = true
+            self.songPlayerViewControlDelegate?.didPlayOrResumeSong()
+        }
     }
     
     func seekBackwards10Seconds() {
@@ -154,7 +216,7 @@ class MusicPlayerManager: NSObject {
         if newSongTime < 0 {
             newSongTime = 0
         }
-
+        
         seekTo(newSongTime: newSongTime)
     }
 
@@ -162,7 +224,7 @@ class MusicPlayerManager: NSObject {
         let newSongTime = self.currentSongTimeSec + self.seekForwardBackwardSecAmount
         if newSongTime > self.currentSong!.durationSec {
             self.currentSongTimeSec = self.currentSong!.durationSec
-            NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
             restartSong()
         } else {
             seekTo(newSongTime: newSongTime)
@@ -171,26 +233,33 @@ class MusicPlayerManager: NSObject {
     
     func seekTo(newSongTime: Int, success: ((Bool) -> ())? = nil) {
         if (isSeeking) { return }
-        isSeeking = true
         let wasPaused = !self.isPlaying
         
-        self.spotifyAppRemote.playerAPI?.seek(toPosition: newSongTime * 1000, callback: { result, error in
-            self.isSeeking = false
-            if let _ = result {
-                // If song is paused, then manually move the time indicator, else allow the checkCurrentSong to sync with the moving indicator
-                if wasPaused {
-                    self.currentSongTimeSec = newSongTime
-                    NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: nil)
-                } else {
-                    self.checkCurrentSong()
+        if currentSong!.isSpotifySong {
+            isSeeking = true
+            self.spotifyAppRemote.playerAPI?.seek(toPosition: newSongTime * 1000, callback: { result, error in
+                self.isSeeking = false
+                if let _ = result {
+                    // If song is paused, then manually move the time indicator, else allow the checkCurrentSong to sync with the moving indicator
+                    if wasPaused {
+                        self.currentSongTimeSec = newSongTime
+                        NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
+                    } else {
+                        self.checkCurrentSong()
+                    }
+                    
+                    success?(true)
+                } else if let error = error {
+                    self.presentErrorAlert(title: "Spotify Seek Error", error: error)
+                    success?(false)
                 }
-                
-                success?(true)
-            } else if let error = error {
-                self.presentErrorAlert(title: "Spotify Seek Error", error: error)
-                success?(false)
-            }
-        })
+            })
+        } else if currentSong!.isAppleMusicSong {
+            appleMusicPlayer.currentPlaybackTime = TimeInterval.init(newSongTime)
+            self.currentSongTimeSec = newSongTime
+            NotificationCenter.default.post(name: Notification.Name("didChangeSongTime"), object: nil, userInfo: ["animate": false])
+            success?(true)
+        }
     }
         
     // MARK: - Spotify Authorization

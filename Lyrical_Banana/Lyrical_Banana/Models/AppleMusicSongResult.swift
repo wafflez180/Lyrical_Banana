@@ -15,7 +15,10 @@ class AppleMusicSongResult: SearchSongResult {
         self.name = json["trackName"].stringValue
         self.songId = json["trackId"].stringValue
         self.durationMilliSec = json["trackTimeMillis"].intValue
+        self.durationSec = json["trackTimeMillis"].intValue / 1000
+        self.durationStr = stringFromMilliSec(ms: json["trackTimeMillis"].intValue)
         self.albumImageLink = json["artworkUrl100"].stringValue
+        
         self.artists = [json["artistName"].stringValue]
         self.artistLabelText = json["artistName"].stringValue
     }

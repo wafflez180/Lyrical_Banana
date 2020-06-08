@@ -106,7 +106,7 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate,
     }
     
     func didEndSeeking() {
-        if MusicPlayerManager.shared.spotifyAppRemote.isConnected {
+        if MusicPlayerManager.shared.spotifyAppRemote.isConnected || MusicPlayerManager.shared.currentSong!.isAppleMusicSong {
             backwardButton.isEnabled = true
             forwardButton.isEnabled = true
         }
