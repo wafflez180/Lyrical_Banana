@@ -37,19 +37,19 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate,
         songTimeBarView.viewDidLoad()
         songTimeBarView.movingIndicatorDelegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(didHideSelectSongView), name: Notification.Name("didHideSelectSongView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideSelectSongView), name: Notification.Name("willHideSelectSongView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spotifyDidDisconnect), name: Notification.Name("spotifyDidDisconnecd"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spotifyDidReconnect), name: Notification.Name("spotifyDidReconnect"), object: nil)
     }
     
     // MARK: - SongPlayerViewController
     
-    @objc private func didHideSelectSongView() {
+    @objc private func willHideSelectSongView() {
         if let selectedSong = MusicPlayerManager.shared.currentSong {
             self.songNameLabel.text = selectedSong.name
             self.artistNameLabel.text = selectedSong.artistLabelText
 
-            songTimeBarView.didHideSelectSongView()
+            songTimeBarView.willHideSelectSongView()
             MusicPlayerManager.shared.playSong()
         }
     }

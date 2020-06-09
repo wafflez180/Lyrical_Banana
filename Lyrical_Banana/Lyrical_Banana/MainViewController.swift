@@ -77,17 +77,17 @@ class MainViewController: UIViewController {
     // MARK: - Notifications
 
     @objc private func didSelectSong(notification: NSNotification) {
-        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+        NotificationCenter.default.post(name: Notification.Name("willHideSelectSongView"), object: nil, userInfo: nil)
+
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
             self.selectSongView.alpha = 0.0
         }) { completed in
             self.selectSongView.isHidden = true
-            
-            NotificationCenter.default.post(name: Notification.Name("didHideSelectSongView"), object: nil, userInfo: nil)
-       }
+        }
 
         self.editorContainerView.isHidden = false
         self.editorContainerView.alpha = 0.0
-        UIView.animate(withDuration: 0.2, delay: 0.4, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
             self.editorContainerView.alpha = 1.0
         }) { completed in
 

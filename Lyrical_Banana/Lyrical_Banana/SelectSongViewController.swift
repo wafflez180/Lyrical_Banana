@@ -52,6 +52,10 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
         return songCell
     }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        searchTextField.endEditing(true)
+    }
+        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSongResult = songList[indexPath.row]
         MusicPlayerManager.shared.currentSong = selectedSongResult
@@ -60,7 +64,8 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
             appleMusicManager.prepareToPlay()
         }
         
-        self.searchTextField.resignFirstResponder()
+        //self.searchTextField.resignFirstResponder()
+        //searchTextField.endEditing(true)
         NotificationCenter.default.post(name: Notification.Name("didSelectSong"), object: nil, userInfo: nil)
     }
 

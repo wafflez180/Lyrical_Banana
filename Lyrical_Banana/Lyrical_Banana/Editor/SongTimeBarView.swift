@@ -40,13 +40,13 @@ class SongTimeBarView: UIView {
     func viewDidLoad() {
         initialMovingTimeIndicatorColor = movingTimeIndicatorView.backgroundColor
         initialMovingTimeIndicatorViewLeftConstraint = movingTimeIndicatorViewLeftConstraint.constant
-        self.currentTimeLabel.text = "00:00"
-        self.totalTimeLabel.text = "00:00"
+        self.currentTimeLabel.text = "0:00"
+        self.totalTimeLabel.text = "0:00"
         
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeSongTime), name: Notification.Name("didChangeSongTime"), object: nil)
     }
     
-    func didHideSelectSongView() {
+    func willHideSelectSongView() {
         let selectedSong = MusicPlayerManager.shared.currentSong!
         self.totalTimeLabel.text = selectedSong.durationStr
         self.amountToIncrementEverySec = ((self.timeBarView.frame.width - (self.movingTimeIndicatorView.frame.width/2)) / (CGFloat(selectedSong.durationMilliSec) / 1000.0))
@@ -202,7 +202,7 @@ class SongTimeBarView: UIView {
         let time = NSInteger(seconds)
         let seconds = time % 60
         let minutes = (time / 60) % 60
-        
-        return String(format: "%0.2d:%0.2d",minutes,seconds)
+
+        return String(format: "\(minutes):%0.2d",seconds)
     }
 }

@@ -12,6 +12,7 @@ import MediaPlayer
 class AppleMusicManager: NSObject, MusicServiceManager {
     let appleMusicPlayer: MPMusicPlayerApplicationController = MPMusicPlayerController.applicationQueuePlayer
     var didAddPlaybackStateObserver = false
+    var isFirstStop = true
     
     // MARK: - Apple Music Manager
 
@@ -62,6 +63,11 @@ class AppleMusicManager: NSObject, MusicServiceManager {
     
     @objc func appleMusicPlaybackStateDidChange(){
         let playbackState = appleMusicPlayer.playbackState
+        
+        // When the song is first played after song selection,
+        // it is stopped for some reason by Apple Music
+        if playbackState == .stopped && isFirstStop { isFirstStop = false; return }
+        
         if playbackState == .playing {
             MusicPlayerManager.shared.isPlaying = true
             MusicPlayerManager.shared.songPlayerViewControlDelegate?.didPlayOrResumeSong()

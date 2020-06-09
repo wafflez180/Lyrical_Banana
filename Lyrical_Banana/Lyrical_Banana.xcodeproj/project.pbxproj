@@ -113,14 +113,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		CA0BB0B323E795C80093F5CE /* Models */ = {
+		CA0BB0B323E795C80093F5CE /* Song Result Models */ = {
 			isa = PBXGroup;
 			children = (
 				CABF4ABC23EF20EE002E1671 /* SearchSongResult.swift */,
 				CA0BB0B123E795C40093F5CE /* SpotifySongResult.swift */,
 				CABF4ABA23EF1F5B002E1671 /* AppleMusicSongResult.swift */,
 			);
-			path = Models;
+			path = "Song Result Models";
 			sourceTree = "<group>";
 		};
 		CA1ECE0324901B5B00BEB19C /* Music Managers */ = {
@@ -173,7 +173,7 @@
 				CA0BB0AD23E77AA10093F5CE /* SongTableViewCell.swift */,
 				CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */,
 				CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */,
-				CA0BB0B323E795C80093F5CE /* Models */,
+				CA0BB0B323E795C80093F5CE /* Song Result Models */,
 				CA8BF75723E4E08800DAB094 /* Assets.xcassets */,
 				CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */,
 				CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */,
