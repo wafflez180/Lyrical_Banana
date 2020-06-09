@@ -130,7 +130,8 @@ class SongTimeBarView: UIView {
     func seekToNewSongTime() {
         let newSongTime = Int(movingTimeIndicatorViewLeftConstraint.constant / amountToIncrementEverySec)
         
-        if MusicPlayerManager.shared.spotifyAppRemote.isConnected || MusicPlayerManager.shared.currentSong!.isAppleMusicSong {
+        let spotifyIsConnected = (MusicPlayerManager.shared.musicService as? SpotifyManager)?.appRemote.isConnected ?? false
+        if spotifyIsConnected || MusicPlayerManager.shared.selectedMusicService! == .appleMusic {
             MusicPlayerManager.shared.seekTo(newSongTime: newSongTime) { success in
                 self.movingIndicatorDelegate?.didEndSeeking()
                 if success {
@@ -164,7 +165,9 @@ class SongTimeBarView: UIView {
     
     @objc func incrementTimeAndUpdateViews() {
         let songLengthSec = MusicPlayerManager.shared.currentSong!.durationSec
-        if MusicPlayerManager.shared.isPlaying && MusicPlayerManager.shared.currentSongTimeSec < songLengthSec && MusicPlayerManager.shared.spotifyAppRemote.isConnected {
+        let spotifyIsConnected = (MusicPlayerManager.shared.musicService as? SpotifyManager)?.appRemote.isConnected ?? false
+        
+        if MusicPlayerManager.shared.isPlaying && MusicPlayerManager.shared.currentSongTimeSec < songLengthSec && spotifyIsConnected {
             MusicPlayerManager.shared.currentSongTimeSec += 1
             
             currentTimeLabel.text = stringFromSec(seconds: MusicPlayerManager.shared.currentSongTimeSec)

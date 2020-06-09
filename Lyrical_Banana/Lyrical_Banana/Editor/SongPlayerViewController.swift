@@ -77,7 +77,7 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate,
     @IBAction func pressedSpotifyDisconnectedAlert(_ sender: Any) {
         let alert = UIAlertController(title: "Spotify was disconnected", message: "Apple's iOS disconnects Spotify when music is not played after 30 seconds.", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Reconnect", style: UIAlertAction.Style.default, handler: { action in
-            MusicPlayerManager.shared.requestSpotifyAuthorization()
+            MusicPlayerManager.shared.spotifyManager.requestSpotifyAuthorization()
         }))
         alert.addAction(UIAlertAction(title: "Ignore", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -106,7 +106,8 @@ class SongPlayerViewController: UIViewController, SongPlayerViewControlDelegate,
     }
     
     func didEndSeeking() {
-        if MusicPlayerManager.shared.spotifyAppRemote.isConnected || MusicPlayerManager.shared.currentSong!.isAppleMusicSong {
+        let spotifyIsConnected = (MusicPlayerManager.shared.musicService as? SpotifyManager)?.appRemote.isConnected ?? false
+        if spotifyIsConnected || MusicPlayerManager.shared.selectedMusicService! == .appleMusic {
             backwardButton.isEnabled = true
             forwardButton.isEnabled = true
         }

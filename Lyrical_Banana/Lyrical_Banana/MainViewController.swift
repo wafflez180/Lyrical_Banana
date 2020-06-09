@@ -28,8 +28,6 @@ class MainViewController: UIViewController {
     @IBOutlet var musicServiceView: UIView!
     @IBOutlet var selectSongView: UIView!
     
-    static var authorizedAppleMusic = false
-    
     // MARK: - UIViewController
 
     override func viewDidLoad() {
@@ -47,8 +45,7 @@ class MainViewController: UIViewController {
         self.lyricalBananaLabel.isHidden = true
         self.bananaImageView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(recievedFirstSpotifyAuth), name: Notification.Name("recievedFirstSpotifyAuth"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(authorizedAppleMusic), name: Notification.Name("authorizedAppleMusic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMusicServiceAuth), name: Notification.Name("didReceiveMusicServiceAuth"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(launchTransitionDidComplete), name: Notification.Name("launchTransitionComplete"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didSelectSong), name: Notification.Name("didSelectSong"), object: nil)
     }
@@ -123,15 +120,10 @@ class MainViewController: UIViewController {
 //        })
     }
 
-    @objc private func recievedFirstSpotifyAuth(notification: NSNotification) {
+    @objc private func didReceiveMusicServiceAuth(notification: NSNotification) {
         musicServiceToSelectSongTransition()
     }
     
-    @objc private func authorizedAppleMusic(notification: NSNotification) {
-        MainViewController.authorizedAppleMusic = true
-        musicServiceToSelectSongTransition()
-    }
-
     // MARK: - Actions
     
     @IBAction func pressedCreateNewVideo(_ sender: Any) {

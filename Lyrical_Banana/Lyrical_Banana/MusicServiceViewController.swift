@@ -19,7 +19,7 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -51,7 +51,7 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
 
     @IBAction func pressedSpotifyButton(_ sender: Any) {
         // TODO: Check what happens when not connected to internet, show alert when not connected
-        MusicPlayerManager.shared.requestSpotifyAuthorization()
+        MusicPlayerManager.shared.spotifyManager.requestSpotifyAuthorization()
     }
     
     @IBAction func pressedAppleMusicButton(_ sender: Any) {
@@ -84,8 +84,9 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
                         print(capabilities)
                         print(error)
                         if capabilities.contains(.musicCatalogPlayback) {
-                            // User has Apple Music account
-                            NotificationCenter.default.post(name: Notification.Name("authorizedAppleMusic"), object: nil)
+                            // User has Apple Music account and is authorized
+                            MusicPlayerManager.shared.selectedMusicService = .appleMusic
+                            NotificationCenter.default.post(name: Notification.Name("didReceiveMusicServiceAuth"), object: nil)
                         } else if capabilities.contains(.musicCatalogSubscriptionEligible) {
                             // User can sign up to Apple Music
                             self.showAppleMusicSignup()
