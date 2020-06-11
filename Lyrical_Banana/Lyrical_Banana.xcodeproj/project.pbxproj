@@ -14,7 +14,6 @@
 		CA0BB0B023E77AA10093F5CE /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */; };
 		CA0BB0B223E795C40093F5CE /* SpotifySongResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0BB0B123E795C40093F5CE /* SpotifySongResult.swift */; };
 		CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */; };
-		CA35E5D02491696600FD4E7A /* GoogleImageSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35E5CF2491696600FD4E7A /* GoogleImageSearchResult.swift */; };
 		CA35E5D42491702200FD4E7A /* ImageSearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35E5D32491702200FD4E7A /* ImageSearchResultCollectionViewCell.swift */; };
 		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
 		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
@@ -32,6 +31,7 @@
 		CABF4ABF23EF2C69002E1671 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4ABE23EF2C69002E1671 /* ImageSearchViewController.swift */; };
 		CABF4AC123EF2C8E002E1671 /* LyricEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4AC023EF2C8E002E1671 /* LyricEditorViewController.swift */; };
 		CABF4AC323EF2CA4002E1671 /* SongPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4AC223EF2CA4002E1671 /* SongPlayerViewController.swift */; };
+		CAD1A14C2492AE290003BEAB /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A14B2492AE290003BEAB /* ErrorManager.swift */; };
 		CADF933423E7E3A3002C6846 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */; };
 		CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */; };
 		CAE05BF7240304C500139DF5 /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */; };
@@ -49,7 +49,6 @@
 		CA0BB0AE23E77AA10093F5CE /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SongTableViewCell.xib; path = ../../../../Downloads/SongTableViewCell.xib; sourceTree = "<group>"; };
 		CA0BB0B123E795C40093F5CE /* SpotifySongResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySongResult.swift; sourceTree = "<group>"; };
 		CA0F410823E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchToMainTransitionViewController.swift; sourceTree = "<group>"; };
-		CA35E5CF2491696600FD4E7A /* GoogleImageSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleImageSearchResult.swift; sourceTree = "<group>"; };
 		CA35E5D32491702200FD4E7A /* ImageSearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA49ADB723E4E3F300F31630 /* Sinhala_MN.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sinhala_MN.ttc; sourceTree = "<group>"; };
 		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		CABF4ABE23EF2C69002E1671 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
 		CABF4AC023EF2C8E002E1671 /* LyricEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricEditorViewController.swift; sourceTree = "<group>"; };
 		CABF4AC223EF2CA4002E1671 /* SongPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerViewController.swift; sourceTree = "<group>"; };
+		CAD1A14B2492AE290003BEAB /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				CA0BB0B323E795C80093F5CE /* Song Result Models */,
-				CA35E5CF2491696600FD4E7A /* GoogleImageSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +196,7 @@
 				CA8BF75023E4E08500DAB094 /* SceneDelegate.swift */,
 				CA8BF75423E4E08500DAB094 /* Main.storyboard */,
 				CA8BF75223E4E08500DAB094 /* MainViewController.swift */,
+				CAD1A14B2492AE290003BEAB /* ErrorManager.swift */,
 				CA1ECE0324901B5B00BEB19C /* Music Managers */,
 				CABF4AC423EF2CAA002E1671 /* Editor */,
 				CA0BB0A423E760300093F5CE /* MusicServiceViewController.swift */,
@@ -347,6 +347,7 @@
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
 				CA0BB0B223E795C40093F5CE /* SpotifySongResult.swift in Sources */,
 				CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */,
+				CAD1A14C2492AE290003BEAB /* ErrorManager.swift in Sources */,
 				CA0BB0A923E7706E0093F5CE /* UIView+Extension.swift in Sources */,
 				CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */,
 				CA5DC29124897C2E0069720F /* SongTimeBarView.swift in Sources */,
@@ -354,7 +355,6 @@
 				CA0BB0A723E76F780093F5CE /* SelectSongViewController.swift in Sources */,
 				CA35E5D42491702200FD4E7A /* ImageSearchResultCollectionViewCell.swift in Sources */,
 				CA54F58F248ECCD90021C227 /* SpotifyManager.swift in Sources */,
-				CA35E5D02491696600FD4E7A /* GoogleImageSearchResult.swift in Sources */,
 				CABF4ABB23EF1F5B002E1671 /* AppleMusicSongResult.swift in Sources */,
 				CA0BB0A523E760300093F5CE /* MusicServiceViewController.swift in Sources */,
 				CA54F591248ECD1C0021C227 /* AppleMusicManager.swift in Sources */,

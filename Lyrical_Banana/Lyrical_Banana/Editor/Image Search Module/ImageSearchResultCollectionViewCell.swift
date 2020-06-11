@@ -7,61 +7,52 @@
 //
 
 import UIKit
-import Kingfisher
+import Photos
 import SkeletonView
 
 class ImageSearchResultCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var photoImageView: UIImageView!
     
-    @IBOutlet var imageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewLeftConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewRightConstraint: NSLayoutConstraint!
-    @IBOutlet var imageViewBotConstraint: NSLayoutConstraint!
+    @IBOutlet var photoImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var photoImageViewHeightConstraint: NSLayoutConstraint!
     
-    func showLoadingAnimation() {
-        if !isSkeletonActive {
-            imageViewTopConstraint.isActive = true
-            imageViewBotConstraint.isActive = true
-            imageViewLeftConstraint.isActive = true
-            imageViewRightConstraint.isActive = true
-
-            let animation = GradientDirection.topLeftBottomRight.slidingAnimation()
-            self.showAnimatedGradientSkeleton(usingGradient: SkeletonAppearance.default.gradient, animation: animation, transition: .none)
+    func configureCell(withPhotoAsset photoAsset: PHAsset) {
+        let skeletonAnimation = GradientDirection.topLeftBottomRight.slidingAnimation()
+        self.showAnimatedGradientSkeleton(usingGradient: SkeletonAppearance.default.gradient, animation: skeletonAnimation, transition: .none)
+                
+        let imageRequestOptions = PHImageRequestOptions.init()
+        imageRequestOptions.isNetworkAccessAllowed = true // if image stored in iCloud
+        imageRequestOptions.deliveryMode = .highQualityFormat
+        imageRequestOptions.resizeMode = .none
+        imageRequestOptions.isSynchronous = false
+        PHImageManager.default().requestImage(for: photoAsset, targetSize: self.frame.size, contentMode: .aspectFit, options: imageRequestOptions) { image, imageInfoDict in
+            if let image = image {
+                self.hideSkeleton()
+                self.photoImageView.image = image
+                
+                // Set constraints such that when borderWidth is set, it surrounds the image (instead of a square imageView)
+                if image.size.width > image.size.height {
+                    self.photoImageViewWidthConstraint.constant = self.frame.size.width
+                    self.photoImageViewHeightConstraint.constant = self.frame.size.height * (image.size.height / image.size.width)
+                } else {
+                    self.photoImageViewWidthConstraint.constant = self.frame.size.width * (image.size.width / image.size.height)
+                    self.photoImageViewHeightConstraint.constant = self.frame.size.height
+                }
+                self.layoutIfNeeded()
+            }
+            if let errorDesc = imageInfoDict?[PHImageErrorKey] as? String {
+                ErrorManager.shared.presentErrorAlert(title: "Photo Retreival Error", errorDescription: errorDesc)
+            }
         }
-    }
-    
-    func configureCell(withSearchResult searchResult: GoogleImageSearchResult) {
-        if isSkeletonActive {
-            hideSkeleton(transition: .crossDissolve(0.25))
-        }
         
-        imageView.kf.setImage(with: searchResult.thumbnailLink)
-        
-        /* TODO: When user has poor connection, show the skeleton view
-        imageView.kf.setImage(with: <#T##Source?#>, placeholder: nil, options: nil, progressBlock: nil) { result, error in
-            <#code#>
-        }*/
-        
-        imageView.borderWidth = 0
-        
-        if searchResult.thumbnailHeight > searchResult.thumbnailWidth {
-            imageViewTopConstraint.isActive = true
-            imageViewBotConstraint.isActive = true
-            imageViewLeftConstraint.isActive = false
-            imageViewRightConstraint.isActive = false
-        } else {
-            imageViewTopConstraint.isActive = false
-            imageViewBotConstraint.isActive = false
-            imageViewLeftConstraint.isActive = true
-            imageViewRightConstraint.isActive = true
-        }
+        photoImageView.borderWidth = 0
     }
     
     func addHighlightBorder() {
-        imageView.borderWidth = 4
+        photoImageView.borderWidth = 4
     }
     
     func removeHighlightBorder() {
-        imageView.borderWidth = 0
+        photoImageView.borderWidth = 0
     }
 }

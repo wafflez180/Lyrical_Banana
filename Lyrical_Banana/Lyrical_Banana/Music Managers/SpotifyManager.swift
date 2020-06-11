@@ -57,7 +57,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
                         MusicPlayerManager.shared.currentSongTimeSec = playbackPositionSec
                     }
                 } else if let error = error {
-                    MusicPlayerManager.shared.presentErrorAlert(title: "Spotify Song Check Error", error: error)
+                    ErrorManager.shared.presentErrorAlert(title: "Spotify Song Check Error", error: error)
                 }
             })
         }
@@ -73,7 +73,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
                 MusicPlayerManager.shared.isRequestingToPlay = false
                 success?(true)
             }  else if let error = error {
-                MusicPlayerManager.shared.presentErrorAlert(title: "Spotify Play Song Error", error: error)
+                ErrorManager.shared.presentErrorAlert(title: "Spotify Play Song Error", error: error)
                 success?(false)
             }
         })
@@ -89,7 +89,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
                 success?(true)
             } else if let error = error {
                 success?(false)
-                MusicPlayerManager.shared.presentErrorAlert(title: "Spotify Pause Song Error", error: error)
+                ErrorManager.shared.presentErrorAlert(title: "Spotify Pause Song Error", error: error)
             }
         })
     }
@@ -104,7 +104,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
                 success?(true)
             } else if let error = error {
                 success?(false)
-                MusicPlayerManager.shared.presentErrorAlert(title: "Spotify Resume Song Error", error: error)
+                ErrorManager.shared.presentErrorAlert(title: "Spotify Resume Song Error", error: error)
             }
         })
     }
@@ -116,7 +116,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
             if let _ = result {
                 success?(true)
             } else if let error = error {
-                MusicPlayerManager.shared.presentErrorAlert(title: "Spotify Seek Error", error: error)
+                ErrorManager.shared.presentErrorAlert(title: "Spotify Seek Error", error: error)
                 success?(false)
             }
         })
@@ -190,7 +190,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
         print("[SPOTIFY] failed")
         if let error = error {
-            MusicPlayerManager.shared.presentErrorAlert(title: "Failed Spotify Authorization", error: error)
+            ErrorManager.shared.presentErrorAlert(title: "Failed Spotify Authorization", error: error)
         }
     }
 
@@ -236,7 +236,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
             }
         } else if let errorDescription = parameters?[SPTAppRemoteErrorDescriptionKey] {
             // Failed authorization from Spotify
-            MusicPlayerManager.shared.presentErrorAlert(title: "Failed Spotify Authorization", errorDescription: errorDescription)
+            ErrorManager.shared.presentErrorAlert(title: "Failed Spotify Authorization", errorDescription: errorDescription)
         }
     }
 }
