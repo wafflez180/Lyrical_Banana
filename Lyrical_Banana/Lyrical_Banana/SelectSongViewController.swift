@@ -93,7 +93,6 @@ class SelectSongViewController: UIViewController, UITextFieldDelegate, UITableVi
                     
                     self.songTableView.reloadData()
                 }
-
             }
         } else if let spotifyManager = (MusicPlayerManager.shared.musicService as? SpotifyManager) {
             AF.request("https://api.spotify.com/v1/search", method: .get, parameters: ["access_token":spotifyManager.spotifyAccessToken, "q":searchText, "type":"track"], encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil).response { response in
