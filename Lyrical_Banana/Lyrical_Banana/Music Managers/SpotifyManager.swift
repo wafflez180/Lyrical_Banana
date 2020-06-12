@@ -141,7 +141,7 @@ class SpotifyManager: NSObject, MusicServiceManager, SPTAppRemoteDelegate {
     
     // MARK: - Spotify App Remote Delegate
     
-    let SpotifyClientID = "f1b391b1630347c8894107725cd1009b"
+    let SpotifyClientID = "spotify_client_id"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
     
     var isFirstConnection = true

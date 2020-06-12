@@ -34,9 +34,12 @@ class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, 
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
         
+        imageSelectionHeaderLabel.isHighlighted = true
+        imageIconImageView.isHighlighted = true
         tapToReselectLabel.alpha = 0.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(getPhotoAssets), name: Notification.Name("willHideSelectSongView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willSwapEditingModules), name: Notification.Name("swapEditingModules"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,14 +61,14 @@ class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, 
         self.photosCollectionView.reloadData()
     }
         
-    func setEditorModuleMode(top: Bool) {
-        isTopModule = top
-        imageSelectionHeaderLabel.isHighlighted = !top
-        imageIconImageView.isHighlighted = !top
-        photosCollectionView.isUserInteractionEnabled = !top
-        photosCollectionView.showsVerticalScrollIndicator = !top
+    @objc func willSwapEditingModules() {
+        isTopModule = !isTopModule
+        imageSelectionHeaderLabel.isHighlighted = !isTopModule
+        imageIconImageView.isHighlighted = !isTopModule
+        photosCollectionView.isUserInteractionEnabled = !isTopModule
+        photosCollectionView.showsVerticalScrollIndicator = !isTopModule
         
-        if top {
+        if isTopModule {
             photosCollectionView.isHidden = true
             UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
                 self.tapToReselectLabel.alpha = 1.0
@@ -80,8 +83,6 @@ class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, 
             }
             photosCollectionView.reloadData()
         }
-        
-        NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
     }
     
     // MARK: - Touch Handling
@@ -89,7 +90,7 @@ class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let _ = touches.first {
             if isTopModule {
-                setEditorModuleMode(top: false)
+                NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
             }
         }
     }
@@ -98,7 +99,7 @@ class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, 
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPhotoAsset = photoAssetList[indexPath.row]
-        setEditorModuleMode(top: true)
+        NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

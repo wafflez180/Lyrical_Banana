@@ -79,7 +79,6 @@ class MusicServiceViewController: UIViewController, SKCloudServiceSetupViewContr
                case .authorized:
                     print(status)
                     print("---------------")
-                    let developerToken = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkZHSElKNjc4OTAifQ.eyJpYXQiOjE1ODExMjMwNTgsImV4cCI6MTU5NjY3NTA1OCwiaXNzIjoiQUJDREUxMjM0NSJ9.l_0hFFaDnntN9iUUXTnlP2xbTpW0pFj3YpLS2ZpQ593VpNIivnS6xjtgHvQITo7081xvy7yYOOLWDWhlJapdEw"
                     SKCloudServiceController().requestCapabilities { capabilities, error in
                         print(capabilities)
                         print(error)

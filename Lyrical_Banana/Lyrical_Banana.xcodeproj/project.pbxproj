@@ -17,7 +17,6 @@
 		CA35E5D42491702200FD4E7A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35E5D32491702200FD4E7A /* ImageCollectionViewCell.swift */; };
 		CA49ADBB23E4F3B900F31630 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */; };
 		CA49ADBD23E4FA8A00F31630 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */; };
-		CA54F58F248ECCD90021C227 /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA54F58E248ECCD90021C227 /* SpotifyManager.swift */; };
 		CA54F591248ECD1C0021C227 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA54F590248ECD1C0021C227 /* AppleMusicManager.swift */; };
 		CA5DC29124897C2E0069720F /* SongTimeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5DC29024897C2E0069720F /* SongTimeBarView.swift */; };
 		CA8BF74F23E4E08500DAB094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF74E23E4E08500DAB094 /* AppDelegate.swift */; };
@@ -36,6 +35,7 @@
 		CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */; };
 		CAE05BF7240304C500139DF5 /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */; };
 		CAE24285249408440058DB8D /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE24284249408440058DB8D /* SelectedImageCollectionViewCell.swift */; };
+		CAE242892494331E0058DB8D /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE242882494331E0058DB8D /* SpotifyManager.swift */; };
 		D9FBEDAB02D0F6F83BE71E65 /* Pods_Lyrical_Banana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D933D640B0674A1403D18E /* Pods_Lyrical_Banana.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,6 @@
 		CA49ADBA23E4F3B900F31630 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		CA49ADBC23E4FA8A00F31630 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		CA4C9A4023E612D700A38033 /* Lyrical_Banana-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lyrical_Banana-Bridging-Header.h"; sourceTree = "<group>"; };
-		CA54F58E248ECCD90021C227 /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		CA54F590248ECD1C0021C227 /* AppleMusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
 		CA5DC29024897C2E0069720F /* SongTimeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTimeBarView.swift; sourceTree = "<group>"; };
 		CA8BF74B23E4E08500DAB094 /* Lyrical Banana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lyrical Banana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +75,7 @@
 		CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
 		CAE24284249408440058DB8D /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CAE242882494331E0058DB8D /* SpotifyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */,
-				CA54F58E248ECCD90021C227 /* SpotifyManager.swift */,
+				CAE242882494331E0058DB8D /* SpotifyManager.swift */,
 				CA54F590248ECD1C0021C227 /* AppleMusicManager.swift */,
 			);
 			path = "Music Managers";
@@ -346,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE242892494331E0058DB8D /* SpotifyManager.swift in Sources */,
 				CAE24285249408440058DB8D /* SelectedImageCollectionViewCell.swift in Sources */,
 				CAE05BF7240304C500139DF5 /* MusicPlayerManager.swift in Sources */,
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
@@ -358,7 +359,6 @@
 				CABF4AC123EF2C8E002E1671 /* LyricEditorViewController.swift in Sources */,
 				CA0BB0A723E76F780093F5CE /* SelectSongViewController.swift in Sources */,
 				CA35E5D42491702200FD4E7A /* ImageCollectionViewCell.swift in Sources */,
-				CA54F58F248ECCD90021C227 /* SpotifyManager.swift in Sources */,
 				CABF4ABB23EF1F5B002E1671 /* AppleMusicSongResult.swift in Sources */,
 				CA0BB0A523E760300093F5CE /* MusicServiceViewController.swift in Sources */,
 				CA54F591248ECD1C0021C227 /* AppleMusicManager.swift in Sources */,
