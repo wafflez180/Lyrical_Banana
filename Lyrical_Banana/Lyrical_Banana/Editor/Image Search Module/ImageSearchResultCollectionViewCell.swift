@@ -15,11 +15,13 @@ class ImageSearchResultCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var photoImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet var photoImageViewHeightConstraint: NSLayoutConstraint!
-    
+        
     func configureCell(withPhotoAsset photoAsset: PHAsset) {
-        let skeletonAnimation = GradientDirection.topLeftBottomRight.slidingAnimation()
-        self.showAnimatedGradientSkeleton(usingGradient: SkeletonAppearance.default.gradient, animation: skeletonAnimation, transition: .none)
-                
+        if photoImageView.image == nil {
+            let skeletonAnimation = GradientDirection.topLeftBottomRight.slidingAnimation()
+            self.showAnimatedGradientSkeleton(usingGradient: SkeletonAppearance.default.gradient, animation: skeletonAnimation, transition: .none)
+        }
+        
         let imageRequestOptions = PHImageRequestOptions.init()
         imageRequestOptions.isNetworkAccessAllowed = true // if image stored in iCloud
         imageRequestOptions.deliveryMode = .highQualityFormat
@@ -32,11 +34,11 @@ class ImageSearchResultCollectionViewCell: UICollectionViewCell {
                 
                 // Set constraints such that when borderWidth is set, it surrounds the image (instead of a square imageView)
                 if image.size.width > image.size.height {
-                    self.photoImageViewWidthConstraint.constant = self.frame.size.width
+                    self.photoImageViewWidthConstraint.constant = image.size.width
                     self.photoImageViewHeightConstraint.constant = self.frame.size.height * (image.size.height / image.size.width)
                 } else {
                     self.photoImageViewWidthConstraint.constant = self.frame.size.width * (image.size.width / image.size.height)
-                    self.photoImageViewHeightConstraint.constant = self.frame.size.height
+                    self.photoImageViewHeightConstraint.constant = image.size.height
                 }
                 self.layoutIfNeeded()
             }

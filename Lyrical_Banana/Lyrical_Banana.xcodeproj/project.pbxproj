@@ -32,6 +32,7 @@
 		CABF4AC123EF2C8E002E1671 /* LyricEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4AC023EF2C8E002E1671 /* LyricEditorViewController.swift */; };
 		CABF4AC323EF2CA4002E1671 /* SongPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF4AC223EF2CA4002E1671 /* SongPlayerViewController.swift */; };
 		CAD1A14C2492AE290003BEAB /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A14B2492AE290003BEAB /* ErrorManager.swift */; };
+		CAD1A14E249304E20003BEAB /* ReselectPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD1A14D249304E20003BEAB /* ReselectPhotoCollectionViewCell.swift */; };
 		CADF933423E7E3A3002C6846 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */; };
 		CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */; };
 		CAE05BF7240304C500139DF5 /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */; };
@@ -71,6 +72,7 @@
 		CABF4AC023EF2C8E002E1671 /* LyricEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricEditorViewController.swift; sourceTree = "<group>"; };
 		CABF4AC223EF2CA4002E1671 /* SongPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerViewController.swift; sourceTree = "<group>"; };
 		CAD1A14B2492AE290003BEAB /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		CAD1A14D249304E20003BEAB /* ReselectPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReselectPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		CADF933323E7E3A3002C6846 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		CADF933723E7F224002C6846 /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		CAE05BF6240304C500139DF5 /* MusicPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				CABF4ABE23EF2C69002E1671 /* ImageSearchViewController.swift */,
 				CA35E5D32491702200FD4E7A /* ImageSearchResultCollectionViewCell.swift */,
+				CAD1A14D249304E20003BEAB /* ReselectPhotoCollectionViewCell.swift */,
 			);
 			path = "Image Search Module";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				CA8BF75323E4E08500DAB094 /* MainViewController.swift in Sources */,
 				CA0BB0B223E795C40093F5CE /* SpotifySongResult.swift in Sources */,
 				CADF933823E7F224002C6846 /* iOSDevCenters+GIF.swift in Sources */,
+				CAD1A14E249304E20003BEAB /* ReselectPhotoCollectionViewCell.swift in Sources */,
 				CAD1A14C2492AE290003BEAB /* ErrorManager.swift in Sources */,
 				CA0BB0A923E7706E0093F5CE /* UIView+Extension.swift in Sources */,
 				CA0F410923E7D38600EA8A20 /* LaunchToMainTransitionViewController.swift in Sources */,

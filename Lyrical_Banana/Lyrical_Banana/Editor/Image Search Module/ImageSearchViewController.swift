@@ -11,10 +11,16 @@ import SkeletonView
 import Photos
 
 class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet var collectionViewBotConstraint: NSLayoutConstraint!
     @IBOutlet var photosCollectionView: UICollectionView!
     
+    let collectionViewLeftRightSectionInset: CGFloat = 10
     var photoAssetList = [PHAsset]()
-    var selectedCell: ImageSearchResultCollectionViewCell?
+    
+    var selectedPhotoAsset: PHAsset?
+
+    var isTopModule = false
 
     // MARK: - UIViewController
     
@@ -25,12 +31,13 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
         photosCollectionView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(getPhotoAssets), name: Notification.Name("willHideSelectSongView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didPressReselectPhoto), name: Notification.Name("didPressReselectPhoto"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         getPhotoAssets()
     }
-
+    
     // MARK: - ImageSearchViewController
     
     @objc func getPhotoAssets() {
@@ -45,47 +52,84 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
 
         self.photosCollectionView.reloadData()
     }
+    
+    @objc func didPressReselectPhoto() {
+        isTopModule = false
+        photosCollectionView.reloadData()
+        NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
+    }
         
     // MARK: - UICollectionViewDelegate
+        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if isTopModule && section == 1 {
+            return UIEdgeInsets.init(top: 10, left: collectionViewLeftRightSectionInset, bottom: 0, right: collectionViewLeftRightSectionInset)
+        } else {
+            return UIEdgeInsets.init(top: 0, left: collectionViewLeftRightSectionInset, bottom: 0, right: collectionViewLeftRightSectionInset)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = selectedCell {
-            cell.removeHighlightBorder()
-        }
+        selectedPhotoAsset = photoAssetList[indexPath.row]
+        isTopModule = true
         
-        selectedCell = collectionView.cellForItem(at: indexPath) as? ImageSearchResultCollectionViewCell
-        selectedCell?.addHighlightBorder()
+        photosCollectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath.init(row: 0, section: 0) , at: .top, animated: false)
+        NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
     }
 
     // MARK: - UICollectionViewDataSource
-        
-    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
-        return 1
+            
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if isTopModule {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoAssetList.count
+        if isTopModule && section == 0 {
+            return 2
+        } else {
+            return photoAssetList.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSearchResult", for: indexPath) as! ImageSearchResultCollectionViewCell
         
-        cell.configureCell(withPhotoAsset: photoAssetList[indexPath.row])
+        if isTopModule && indexPath.section == 0 {
+            if indexPath.row == 0 {
+                cell.configureCell(withPhotoAsset: selectedPhotoAsset!)
+                cell.addHighlightBorder()
+            } else if indexPath.row == 1 {
+                return collectionView.dequeueReusableCell(withReuseIdentifier: "ReselectCell", for: indexPath) as! ReselectPhotoCollectionViewCell
+            }
+        } else {
+            cell.configureCell(withPhotoAsset: photoAssetList[indexPath.row])
+        }
         
         return cell
     }
         
     // MARK: - UICollectionViewDelegateFlowLayout
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Fit as many cells with width of 175 within the collectionView's width
         // After you get # of cells that fit, place them into the collectionView's width and fill the gaps between
         let flowLayout = (collectionViewLayout as! UICollectionViewFlowLayout)
         let idealCellWidth = 175
-        let cellPerRow = Int(ceil(collectionView.frame.size.width / CGFloat(idealCellWidth)))
-        let contentWidthWithoutSpacing = collectionView.contentSize.width - flowLayout.minimumInteritemSpacing
+        let sectionLeftRightInset = collectionViewLeftRightSectionInset * 2
+        let cellPerRow = Int(ceil((collectionView.frame.size.width) / CGFloat(idealCellWidth)))
+        let contentWidthWithoutSpacing = collectionView.contentSize.width - flowLayout.minimumInteritemSpacing - sectionLeftRightInset
         let cellWidth = CGFloat(contentWidthWithoutSpacing / CGFloat(cellPerRow))
         
-        return CGSize(width: cellWidth, height: cellWidth)
+        if isTopModule && indexPath.section == 0 {
+            let newCollectionViewHeight = EditorViewController.topModuleHeight - collectionView.frame.origin.y - collectionViewBotConstraint.constant
+            return CGSize(width: cellWidth, height: newCollectionViewHeight)
+        } else {
+            return CGSize(width: cellWidth, height: cellWidth)
+        }
     }
 }
