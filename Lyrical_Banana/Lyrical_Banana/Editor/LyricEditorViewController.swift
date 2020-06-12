@@ -21,9 +21,4 @@ class LyricEditorViewController: UIViewController {
     
     // MARK: - LyricEditorViewController
 
-    // MARK: - Actions
-    
-    @IBAction func didPressSave(_ sender: Any) {
-        
-    }
 }

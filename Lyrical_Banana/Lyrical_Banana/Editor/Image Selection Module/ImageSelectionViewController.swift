@@ -10,10 +10,14 @@ import UIKit
 import SkeletonView
 import Photos
 
-class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ImageSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet var imageSelectionHeaderLabel: UILabel!
+    @IBOutlet var imageIconImageView: UIImageView!
     
     @IBOutlet var collectionViewBotConstraint: NSLayoutConstraint!
     @IBOutlet var photosCollectionView: UICollectionView!
+    @IBOutlet var tapToReselectLabel: UILabel!
     
     let collectionViewLeftRightSectionInset: CGFloat = 10
     var photoAssetList = [PHAsset]()
@@ -30,8 +34,9 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
         
+        tapToReselectLabel.alpha = 0.0
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getPhotoAssets), name: Notification.Name("willHideSelectSongView"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didPressReselectPhoto), name: Notification.Name("didPressReselectPhoto"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,15 +57,50 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
 
         self.photosCollectionView.reloadData()
     }
-    
-    @objc func didPressReselectPhoto() {
-        isTopModule = false
-        photosCollectionView.reloadData()
+        
+    func setEditorModuleMode(top: Bool) {
+        isTopModule = top
+        imageSelectionHeaderLabel.isHighlighted = !top
+        imageIconImageView.isHighlighted = !top
+        photosCollectionView.isUserInteractionEnabled = !top
+        photosCollectionView.showsVerticalScrollIndicator = !top
+        
+        if top {
+            photosCollectionView.isHidden = true
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+                self.tapToReselectLabel.alpha = 1.0
+            }) { completed in
+                self.photosCollectionView.isHidden = false
+                self.photosCollectionView.reloadData()
+                self.photosCollectionView.scrollToItem(at: IndexPath.init(row: 0, section: 0) , at: .top, animated: false)
+            }
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                self.tapToReselectLabel.alpha = 0.0
+            }
+            photosCollectionView.reloadData()
+        }
+        
         NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
+    }
+    
+    // MARK: - Touch Handling
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            if isTopModule {
+                setEditorModuleMode(top: false)
+            }
+        }
     }
         
     // MARK: - UICollectionViewDelegate
         
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPhotoAsset = photoAssetList[indexPath.row]
+        setEditorModuleMode(top: true)
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if isTopModule && section == 1 {
             return UIEdgeInsets.init(top: 10, left: collectionViewLeftRightSectionInset, bottom: 0, right: collectionViewLeftRightSectionInset)
@@ -69,15 +109,6 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPhotoAsset = photoAssetList[indexPath.row]
-        isTopModule = true
-        
-        photosCollectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath.init(row: 0, section: 0) , at: .top, animated: false)
-        NotificationCenter.default.post(name: Notification.Name("swapEditingModules"), object: nil, userInfo: nil)
-    }
-
     // MARK: - UICollectionViewDataSource
             
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -90,34 +121,31 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isTopModule && section == 0 {
-            return 2
+            return 1
         } else {
             return photoAssetList.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSearchResult", for: indexPath) as! ImageSearchResultCollectionViewCell
-        
         if isTopModule && indexPath.section == 0 {
-            if indexPath.row == 0 {
-                cell.configureCell(withPhotoAsset: selectedPhotoAsset!)
-                cell.addHighlightBorder()
-            } else if indexPath.row == 1 {
-                return collectionView.dequeueReusableCell(withReuseIdentifier: "ReselectCell", for: indexPath) as! ReselectPhotoCollectionViewCell
-            }
+            let selectedImageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectedImage", for: indexPath) as! SelectedImageCollectionViewCell
+            selectedImageCell.configureCell(withPhotoAsset: selectedPhotoAsset!)
+            
+            return selectedImageCell
         } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSearchResult", for: indexPath) as! ImageCollectionViewCell
             cell.configureCell(withPhotoAsset: photoAssetList[indexPath.row])
+            
+            return cell
         }
-        
-        return cell
     }
         
     // MARK: - UICollectionViewDelegateFlowLayout
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Fit as many cells with width of 175 within the collectionView's width
-        // After you get # of cells that fit, place them into the collectionView's width and fill the gaps between
+        // After you get # of cells that fit, place them into the collectionView and expand the widths to fill the gaps
         let flowLayout = (collectionViewLayout as! UICollectionViewFlowLayout)
         let idealCellWidth = 175
         let sectionLeftRightInset = collectionViewLeftRightSectionInset * 2
@@ -127,7 +155,7 @@ class ImageSearchViewController: UIViewController, UICollectionViewDelegate, UIC
         
         if isTopModule && indexPath.section == 0 {
             let newCollectionViewHeight = EditorViewController.topModuleHeight - collectionView.frame.origin.y - collectionViewBotConstraint.constant
-            return CGSize(width: cellWidth, height: newCollectionViewHeight)
+            return CGSize(width: contentWidthWithoutSpacing, height: newCollectionViewHeight)
         } else {
             return CGSize(width: cellWidth, height: cellWidth)
         }

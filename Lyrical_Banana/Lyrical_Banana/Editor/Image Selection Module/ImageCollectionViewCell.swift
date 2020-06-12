@@ -10,12 +10,9 @@ import UIKit
 import Photos
 import SkeletonView
 
-class ImageSearchResultCollectionViewCell: UICollectionViewCell {
+class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
-    
-    @IBOutlet var photoImageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var photoImageViewHeightConstraint: NSLayoutConstraint!
-        
+            
     func configureCell(withPhotoAsset photoAsset: PHAsset) {
         if photoImageView.image == nil {
             let skeletonAnimation = GradientDirection.topLeftBottomRight.slidingAnimation()
@@ -27,34 +24,15 @@ class ImageSearchResultCollectionViewCell: UICollectionViewCell {
         imageRequestOptions.deliveryMode = .highQualityFormat
         imageRequestOptions.resizeMode = .none
         imageRequestOptions.isSynchronous = false
+        
         PHImageManager.default().requestImage(for: photoAsset, targetSize: self.frame.size, contentMode: .aspectFit, options: imageRequestOptions) { image, imageInfoDict in
             if let image = image {
                 self.hideSkeleton()
                 self.photoImageView.image = image
-                
-                // Set constraints such that when borderWidth is set, it surrounds the image (instead of a square imageView)
-                if image.size.width > image.size.height {
-                    self.photoImageViewWidthConstraint.constant = image.size.width
-                    self.photoImageViewHeightConstraint.constant = self.frame.size.height * (image.size.height / image.size.width)
-                } else {
-                    self.photoImageViewWidthConstraint.constant = self.frame.size.width * (image.size.width / image.size.height)
-                    self.photoImageViewHeightConstraint.constant = image.size.height
-                }
-                self.layoutIfNeeded()
             }
             if let errorDesc = imageInfoDict?[PHImageErrorKey] as? String {
                 ErrorManager.shared.presentErrorAlert(title: "Photo Retreival Error", errorDescription: errorDesc)
             }
         }
-        
-        photoImageView.borderWidth = 0
-    }
-    
-    func addHighlightBorder() {
-        photoImageView.borderWidth = 4
-    }
-    
-    func removeHighlightBorder() {
-        photoImageView.borderWidth = 0
     }
 }
